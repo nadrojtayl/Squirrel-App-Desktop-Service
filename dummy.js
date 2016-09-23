@@ -1,16 +1,22 @@
 var express = require('express');
 var dummy = express();
-dummy.listen(3000, function() {
+dummy.listen(4000, function() {
   console.log('I\'m listening');
 });
 
+dummy.get('/', function(req, res) {
+  console.log('All is well');
+})
+
 dummy.get('/links/:userid', function(req, res) {
+
+  console.log(req.params.userid);
 
   if (!req.params.userid) {
     console.log('where\'s the userid?');
   }
 
-  linkObject = {
+  linksObject = {
     ownlinks: {
       '1': ['http://www.nytimes.com/2016/09/23/us/charlotte-image-police-shooting.html?hp&action=click&pgtype=Homepage&clickSource=story-heading&module=b-lede-package-region&region=top-news&WT.nav=top-news&_r=0',
         'http://www.vox.com/policy-and-politics/2016/9/23/13001830/donald-trump-jr-tweets-controversy-alt-right-white-nationalism',
@@ -26,7 +32,7 @@ dummy.get('/links/:userid', function(req, res) {
         'http://www.motherjones.com/politics/2016/09/donald-trumps-appeal-ohios-rust-belt-isnt-just-about-economy',
         'https://www.wired.com/2016/09/whats-inside-blue-ballpoint-pen-ink/'
       ]
-    }
+    },
     recommendedLinks: {
       '2': [
         'http://qz.com/787633/farc-gathers-for-its-last-conference-as-a-guerrilla-after-50-years-of-war-to-vote-on-peace/',
@@ -40,7 +46,7 @@ dummy.get('/links/:userid', function(req, res) {
       ]
     }
   }
-  res.send(linkObject);
+  res.send(linksObject);
 });
 
 dummy.put('/links/:userid', function(req, res) {
@@ -57,7 +63,7 @@ dummy.put('/links/:userid', function(req, res) {
 
   res.status(200).end();
 
-}
+});
 
 dummy.delete('/links/:userid', function(req, res) {
    if (!req.params.userid) {
