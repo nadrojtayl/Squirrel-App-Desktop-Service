@@ -2,7 +2,7 @@ var axios = require('axios');
 var fs = require('fs');
 var cheerio = require('cheerio');
 
-var id = 1;
+var id = '1';
 
 axios({
   method: 'get',
@@ -33,14 +33,14 @@ function getLinks(username, userid, ownLinks, key) {
     })
     .then((res) => {
       var $ = cheerio.load(res.data);
-      var title = $('title').text() //.replace(/[\s|]/g, '');
+      var title = $('title').text(); //.replace(/[\s|]/g, '');
       // console.log(title);
       if (userid === id) {
         var path = `Acorns/Me/Mine/${title}.html`;
       } else {
         var dir = `Acorns/${username}/`;
         var path = `${dir}/${title}.html`;  
-        if (!fs.existsSync()) {
+        if (!fs.existsSync(dir)) {
           fs.mkdirSync(dir)           
         }
       }
