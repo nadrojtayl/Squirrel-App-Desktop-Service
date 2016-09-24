@@ -25,7 +25,8 @@ dummy.get('/links/:userid', function(req, res) {
       '2%Jordan': [
         'https://www.theguardian.com/us-news/2016/sep/23/ahmad-khan-rahami-pakistan-taliban-new-york-bombing-terrorism',
         'http://www.theatlantic.com/entertainment/archive/2016/09/national-museum-of-african-american-history-and-culture-smithsonian/501356/',
-        'https://bostonreview.net/us/colin-dayan-on-ice'
+        'https://bostonreview.net/us/colin-dayan-on-ice',
+        'http://www.slate.com/blogs/the_slatest/2016/09/23/donald_trump_s_most_likely_debate_lies.html'
       ],
       '3%Wendy': [
         'http://www.economist.com/news/finance-economics/21707719-government-claims-publishing-report-would-undermine-efforts-retrieve',
