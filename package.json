@@ -5,8 +5,10 @@
   "main": "dummy.js",
   "dependencies": {
     "axios": "^0.14.0",
+    "cheerio": "^0.22.0",
     "electron": "^1.4.1",
     "express": "^4.14.0",
+    "fs": "0.0.1-security",
     "node": "0.0.0"
   },
   "devDependencies": {
