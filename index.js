@@ -1,7 +1,19 @@
 var electron = require('electron');
-var fetch = require('./fetch.js');
+var fetch = require('./src/fetch.js');
 
-var browserWindow = electron.browserWindow;
+var BrowserWindow = electron.BrowserWindow;
 
 var app = electron.app;
+
+app.on('ready', function(){
+
+  var win = new BrowserWindow({});
+
+  win.maximize();
+
+  win.loadURL(`file://${__dirname}/Acorns/test.html`);
+  
+});
+
+
 
