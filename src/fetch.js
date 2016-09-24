@@ -4,31 +4,35 @@ var cheerio = require('cheerio');
 
 var id = '1';
 
-axios({
+console.log('I ran!');
+
+module.exports.call = () => {
+  axios({
   method: 'get',
   url: `http://localhost:4000/links/${id}`
   // params: {
   //   userid: id
   // }
-})
-.then((res) => {
-  linkObject = res.data;
-  ownLinks = res.data.ownLinks
-  recommendedLinks = res.data.recommendedLinks;
-  for (key in ownLinks) {
-    var userid = key.split('%')[0];
-    var username = key.split('%')[1];
-    getLinks(username, userid, ownLinks, key, 'Mine');
-  }
-  for (key in recommendedLinks) {
-    var userid = key.split('%')[0];
-    var username = key.split('%')[1];
-    getLinks(username, userid, recommendedLinks, key, 'Recommended');
-  }
-})
-.catch((err) => {
-  console.log(err);
-})
+  })
+  .then((res) => {
+    linkObject = res.data;
+    ownLinks = res.data.ownLinks
+    recommendedLinks = res.data.recommendedLinks;
+    for (key in ownLinks) {
+      var userid = key.split('%')[0];
+      var username = key.split('%')[1];
+      getLinks(username, userid, ownLinks, key, 'Mine');
+    }
+    for (key in recommendedLinks) {
+      var userid = key.split('%')[0];
+      var username = key.split('%')[1];
+      getLinks(username, userid, recommendedLinks, key, 'Recommended');
+    }
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+};
 
 
 function getLinks(username, userid, links, key, type) {
@@ -48,7 +52,7 @@ function getLinks(username, userid, links, key, type) {
         var dir;
         type === 'Mine' ? dir = `Acorns/${username}/` : dir = `Acorns/Me/Recommended/${username}`
         var path = `${dir}/${title}.html`;
-        console.log(path);  
+        //console.log(path);  
         if (!fs.existsSync(dir)) {
           fs.mkdirSync(dir);           
         }
@@ -61,6 +65,8 @@ function getLinks(username, userid, links, key, type) {
     });
   }
 };
+
+
 
 // function get(link, username) {
 
