@@ -14,7 +14,7 @@ app.on('ready', function(){
 
   win.maximize();
 
-  win.loadURL(`file://${__dirname}/Acorns/test.html`);
+  win.loadURL(`file://${__dirname}/public/index.html`);
   
 });
 

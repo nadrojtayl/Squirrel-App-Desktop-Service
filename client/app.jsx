@@ -1,8 +1,32 @@
 import React from 'react';
-import {render} from 'react-dom';
+import RenderDom from 'react-dom';
+import fs from 'fs';
+import path from 'path';
+import Sidebar from './sidebar.jsx';
 
-var App = () => (
-  <h1>This works</h1>
-)
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-render(<App/>, document.getElementById('app'));
+  loadFolder() {
+    console.log('You loaded a folder!')
+  }
+
+  render() {
+    return
+      (
+        <Sidebar folders={props.folders} loadFolder={this.loadFolder.bind(this)}/>
+    );
+  }
+};
+
+var getFolders = function() {
+
+  var srcpath = `${__dirname}/../Acorns`;
+  return fs.readdirSync(srcpath).filter(function(file) {
+    return fs.statSync(path.join(srcpath, file)).isDirectory();
+  });
+}
+
+RenderDom.render(<App folders={getFolders()}/>, document.getElementById('app'));
