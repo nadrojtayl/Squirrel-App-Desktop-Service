@@ -47,10 +47,10 @@ function getLinks(username, userid, links, key, type) {
       var title = $('title').text(); //.replace(/[\s|]/g, '');
       // console.log(title);
       if (userid === id) {
-        var path = `Acorns/Me/${type}/${title}.html`;
+        var path = `Stash/Me/${type}/${title}.html`;
       } else {
         var dir;
-        type === 'Mine' ? dir = `Acorns/${username}/` : dir = `Acorns/Me/Recommended/${username}`
+        type === 'Mine' ? dir = `Stash/${username}/` : dir = `Stash/Me/Recommended/${username}`
         var path = `${dir}/${title}.html`;
         //console.log(path);  
         if (!fs.existsSync(dir)) {

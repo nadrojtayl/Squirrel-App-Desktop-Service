@@ -1,0 +1,10 @@
+$body-background: #000;
+$myDiv-color: #f00;
+
+body {
+  background-color: $body-background;
+}
+
+div.myDiv {
+  color: $myDiv-color;
+}

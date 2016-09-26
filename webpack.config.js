@@ -8,8 +8,13 @@ var config = {
   entry: APP_DIR + '/app.jsx',
   output: {
     path: BUILD_DIR,
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    // publicPath: 'http://localhost:8080/built/',
   },
+  // devServer: {
+  //   contentBase: `${__dirname}/public`,
+  //   publicPath: 'http://localhost:8080/built/',
+  // },
   module: {
     loaders: [
       {
@@ -17,11 +22,23 @@ var config = {
         include : APP_DIR,
         loader : 'babel',
         query: {
-          presets: ['react']
+          presets: ['react'],
         }
-      } 
+      },
+      { test: /\.css$/, 
+        loader: 'style-loader!css-loader',
+      },
+      {
+        test: /\.scss$/, 
+        loader: 'style-loader!css-loader!sass-loader',
+      }
     ]
-  }
+  },
+
+  // plugins: [
+  //   new webpack.HotModuleReplacementPlugin(),
+  //   // new webpack.IgnorePlugin(new RegExp("^(fs|ipc)$"))
+  // ],
 };
 
 module.exports = config;

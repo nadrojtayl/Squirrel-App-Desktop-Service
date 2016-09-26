@@ -1,5 +1,7 @@
+require('../scss/main.scss');
+
 import React from 'react';
-import RenderDom from 'react-dom';
+import {render} from 'react-dom'
 import fs from 'fs';
 import path from 'path';
 import Sidebar from './sidebar.jsx';
@@ -21,12 +23,13 @@ class App extends React.Component {
   }
 };
 
+var srcpath = `${__dirname}/../Stash/Jordan/`;
 var getFolders = function() {
 
-  var srcpath = `${__dirname}/../Acorns`;
-  return fs.readdirSync(srcpath).filter(function(file) {
-    return fs.statSync(path.join(srcpath, file)).isDirectory();
-  });
+
+  // return fs.readdirSync(srcpath).filter(function(file) {
+  //   return fs.statSync(path.join(srcpath, file)).isDirectory();
+  // });
 }
 
-RenderDom.render(<App folders={getFolders()}/>, document.getElementById('app'));
+render(<App folders={[srcpath]}/>, document.getElementById('app'));
