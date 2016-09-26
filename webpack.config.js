@@ -5,16 +5,16 @@ var BUILD_DIR = path.resolve(__dirname, 'public');
 var APP_DIR = path.resolve(__dirname, 'client');
 
 var config = {
-  entry: APP_DIR + '/app.jsx',
+  entry: APP_DIR + '/app/appContainer.jsx',
   output: {
     path: BUILD_DIR,
     filename: 'bundle.js',
-    // publicPath: 'http://localhost:8080/built/',
+    publicPath: 'http://localhost:8080/built/',
   },
-  // devServer: {
-  //   contentBase: `${__dirname}/public`,
-  //   publicPath: 'http://localhost:8080/built/',
-  // },
+  devServer: {
+    contentBase: `${__dirname}/public`,
+    publicPath: 'http://localhost:8080/built/',
+  },
   module: {
     loaders: [
       {
@@ -35,10 +35,12 @@ var config = {
     ]
   },
 
-  // plugins: [
-  //   new webpack.HotModuleReplacementPlugin(),
-  //   // new webpack.IgnorePlugin(new RegExp("^(fs|ipc)$"))
-  // ],
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    // new webpack.IgnorePlugin(new RegExp('^(fs|ipc)$')),
+  ],
+
+  target: 'node',
 };
 
 module.exports = config;
