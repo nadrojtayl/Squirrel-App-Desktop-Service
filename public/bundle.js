@@ -27,7 +27,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "67a92d286208de963ba5"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "e4e72361dfb195bf2032"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -618,6 +618,7 @@
 	      return true;
 	    }
 	  });
+	  console.log(dirs);
 	  dirs = dirs.map(function (dir) {
 	    return 'Stash/' + dir;
 	  });
@@ -21844,7 +21845,7 @@
 
 	  return _react2.default.createElement(
 	    'ul',
-	    { style: { display: 'inline' } },
+	    { style: { display: 'inline-block', float: 'left' } },
 	    folders
 	  );
 	};
@@ -21953,7 +21954,9 @@
 
 	  console.log(filePaths);
 
-	  return _react2.default.createElement(_articleLibraryPresentation2.default, { filePaths: filePaths });
+	  return _react2.default.createElement(_articleLibraryPresentation2.default, { filePaths: filePaths.filter(function (path) {
+	      return path.indexOf('.DS') === -1;
+	    }) });
 	};
 
 	exports.default = ArticleLibraryContainer;
@@ -21992,7 +21995,7 @@
 
 	  return _react2.default.createElement(
 	    'div',
-	    { style: { display: 'inline' } },
+	    { width: '45%', style: { display: 'inline-block', float: 'left' } },
 	    fileCards
 	  );
 	};

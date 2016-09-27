@@ -17,7 +17,7 @@ var ArticleLibraryContainer = ({folderPath}) => {
   console.log(filePaths);
 
  return (
-    <ArticleLibraryPresentation filePaths={filePaths}/>
+    <ArticleLibraryPresentation filePaths={filePaths.filter(function(path){return path.indexOf('.DS') === -1})}/>
   );
 }
 

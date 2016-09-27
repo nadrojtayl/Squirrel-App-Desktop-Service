@@ -8,7 +8,7 @@ var SidebarPresentation = (props) => {
   });
 
   return (
-    <ul style = {{display:'inline'}}>
+    <ul style = {{display:'inline-block',float: 'left'}}>
       {folders}
     </ul>
   )

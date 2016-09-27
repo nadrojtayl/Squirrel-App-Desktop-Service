@@ -33,6 +33,7 @@ var getFolders = function() {
       return true;
     }
   });
+  console.log(dirs);
   dirs = dirs.map((dir) => {
     return 'Stash/' + dir;
   });
