@@ -21,7 +21,10 @@ class FileCardContainer extends React.Component {
 
   render() {
     return (
-      <button onClick={()=>{this.expand.bind(this)(this.props.path)}}></button>
+      <div>
+      <img width="10%" src="client/assets/acorn.png"></img>
+      <button onClick={()=>{this.expand.bind(this)(this.props.path)}}>{this.props.path}</button>
+      </div>
     );
   }
 };

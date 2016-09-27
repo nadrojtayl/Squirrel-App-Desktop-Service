@@ -27,7 +27,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "60e60c55f0e6cdbd9d36"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "3cfaca0216801ed15a06"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -22050,9 +22050,18 @@
 	    value: function render() {
 	      var _this2 = this;
 
-	      return _react2.default.createElement('button', { onClick: function onClick() {
-	          _this2.expand.bind(_this2)(_this2.props.path);
-	        } });
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement('img', { width: '10%', src: 'client/assets/acorn.png' }),
+	        _react2.default.createElement(
+	          'button',
+	          { onClick: function onClick() {
+	              _this2.expand.bind(_this2)(_this2.props.path);
+	            } },
+	          this.props.path
+	        )
+	      );
 	    }
 	  }]);
 
