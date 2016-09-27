@@ -27,7 +27,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "823800f5224b9f901f7a"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "432834e51d988554b87a"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -21912,7 +21912,7 @@
 	    _react2.default.createElement(
 	      "p",
 	      null,
-	      props.folder
+	      props.folder.replace('Stash/', "")
 	    )
 	  );
 	};

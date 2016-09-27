@@ -88,6 +88,7 @@ ul{
 	border-right-style: solid;
     border-right-width: 1px;
     text-align:center;
+    background-color:#FFCF79;
 }
 
 .sidebar{
@@ -100,4 +101,14 @@ ul{
     border-bottom-width: 1px;
     margin:0px;
     width:100%;
+    background-color:#D38A07;
+}
+
+body {    
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+head{
+	margin: 0 !important;
 }
