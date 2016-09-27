@@ -27,7 +27,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "432834e51d988554b87a"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "d6087ca86f32eef1d60c"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -22080,10 +22080,10 @@
 	          } }),
 	        _react2.default.createElement(
 	          'div',
-	          { style: { display: 'inline' } },
+	          { style: { display: 'inline' }, className: 'vAlign' },
 	          _react2.default.createElement(
 	            'h5',
-	            { style: { display: 'inline' } },
+	            { className: 'titles', style: { display: 'inline' } },
 	            this.props.path.slice(findsecondslash(this.props.path)).replace('.html', "")
 	          )
 	        )

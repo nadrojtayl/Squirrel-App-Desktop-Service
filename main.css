@@ -109,6 +109,20 @@ body {
     padding: 0 !important;
 }
 
-head{
+head,h1{
 	margin: 0 !important;
+}
+
+html{
+	margin-top: 0 !important;
+    padding: 0 !important;
+}
+.titles{
+	position:absolute;
+	width:50%;
+	vertical-align:top;
+}
+
+.vAlign{
+	vertical-align:top;
 }
