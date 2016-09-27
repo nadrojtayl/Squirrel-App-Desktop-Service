@@ -17,9 +17,12 @@ app.on('window-all-closed', function() {
   console.log(`file://${__dirname}/index.html`);
 app.on('ready', function(){
   
-  var win = new BrowserWindow({width: 1360, height: 800});
+  var win = new BrowserWindow({width: 1360, height: 800, "node-integration": "iframe", // and this line
+    "web-preferences": {
+      "web-security": false
+    }});
 
-
+  console.log(`file://${__dirname}/index.html`)
   win.loadURL(`file://${__dirname}/index.html`);
   
 });

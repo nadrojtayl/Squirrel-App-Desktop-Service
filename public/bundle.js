@@ -27,7 +27,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "94577451bfb8c88deeaa"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "60e60c55f0e6cdbd9d36"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -22035,18 +22035,24 @@
 	  _createClass(FileCardContainer, [{
 	    key: 'expand',
 	    value: function expand(url) {
-	      console.log('expanding');
+	      console.log(url);
 	      //const remote = require('electron').remote;
 	      var BrowserWindow = remote.BrowserWindow;
 
 	      var win = new BrowserWindow({ width: 800, height: 600 });
 	      console.log('NEW');
-	      win.loadURL('https://www.nytimes.com');
+	      var toload = 'file://' + topleveldir + '/' + url;
+	      console.log(toload);
+	      win.loadURL(toload);
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      return _react2.default.createElement('button', { onClick: this.expand.bind(this) });
+	      var _this2 = this;
+
+	      return _react2.default.createElement('button', { onClick: function onClick() {
+	          _this2.expand.bind(_this2)(_this2.props.path);
+	        } });
 	    }
 	  }]);
 

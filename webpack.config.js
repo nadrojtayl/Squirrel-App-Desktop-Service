@@ -11,6 +11,10 @@ var config = {
     filename: 'bundle.js',
     publicPath: 'http://localhost:8080/built/',
   },
+    node: {
+    __dirname: false,
+    __filename: false
+  },
   devServer: {
     contentBase: `${__dirname}/public`,
     publicPath: 'http://localhost:8080/built/',
