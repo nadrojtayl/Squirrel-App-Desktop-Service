@@ -17,7 +17,7 @@ app.on('window-all-closed', function() {
   console.log(`file://${__dirname}/index.html`);
 app.on('ready', function(){
   
-  var win = new BrowserWindow({width: 1360, height: 800, "node-integration": "iframe", // and this line
+  var win = new BrowserWindow({width: 1360, title:'Your stash',height: 800, "node-integration": "iframe", // and this line
     "web-preferences": {
       "web-security": false
     }});
