@@ -14,11 +14,13 @@ app.on('window-all-closed', function() {
   }
 });
 
+  console.log(`file://${__dirname}/index.html`);
 app.on('ready', function(){
   
   var win = new BrowserWindow({width: 1360, height: 800});
 
-  win.loadURL(`file://${__dirname}/public/index.html`);
+
+  win.loadURL(`file://${__dirname}/index.html`);
   
 });
 
