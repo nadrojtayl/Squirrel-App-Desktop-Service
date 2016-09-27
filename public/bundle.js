@@ -27,7 +27,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "3cfaca0216801ed15a06"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "67a92d286208de963ba5"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -21844,7 +21844,7 @@
 
 	  return _react2.default.createElement(
 	    'ul',
-	    null,
+	    { style: { display: 'inline' } },
 	    folders
 	  );
 	};
@@ -21992,7 +21992,7 @@
 
 	  return _react2.default.createElement(
 	    'div',
-	    null,
+	    { style: { display: 'inline' } },
 	    fileCards
 	  );
 	};
@@ -22053,13 +22053,22 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement('img', { width: '10%', src: 'client/assets/acorn.png' }),
+	        _react2.default.createElement('img', { style: { display: 'inline' }, className: 'Acorns', width: '10%', src: 'client/assets/acorn.png' }),
 	        _react2.default.createElement(
-	          'button',
-	          { onClick: function onClick() {
-	              _this2.expand.bind(_this2)(_this2.props.path);
-	            } },
-	          this.props.path
+	          'div',
+	          { style: { display: 'inline' } },
+	          _react2.default.createElement(
+	            'h5',
+	            { style: { display: 'inline' } },
+	            this.props.path
+	          ),
+	          _react2.default.createElement(
+	            'button',
+	            { style: { display: 'inline' }, onClick: function onClick() {
+	                _this2.expand.bind(_this2)(_this2.props.path);
+	              } },
+	            'Read more'
+	          )
 	        )
 	      );
 	    }

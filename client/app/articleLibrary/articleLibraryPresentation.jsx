@@ -9,7 +9,7 @@ var ArticleLibraryPresentation = ({filePaths}) => {
   });
 
   return (
-    <div>
+    <div style = {{display:'inline'}}>
       {fileCards}
     </div>
   );
