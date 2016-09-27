@@ -7,12 +7,19 @@ class FileCardContainer extends React.Component {
   }
 
   expand(url) {
-    // window.open(url);
+    console.log('expanding');                    
+    //const remote = require('electron').remote;
+    const BrowserWindow = remote.BrowserWindow;
+
+    var win = new BrowserWindow({ width: 800, height: 600 });
+    console.log('NEW')
+    win.loadURL('https://www.nytimes.com');
+                        
   }
 
   render() {
     return (
-      <iframe src={this.props.path.replace('/public', '')} onClick={this.expand.bind(this, this.props.path)}></iframe>
+      <button onClick={this.expand.bind(this)}></button>
     );
   }
 };
