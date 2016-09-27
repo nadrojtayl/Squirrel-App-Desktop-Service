@@ -25,11 +25,22 @@ class AppContainer extends React.Component {
   }
 };
 
-  var srcpath = 'Stash/Jordan';
 var getFolders = function() {
-  // return fs.readdirSync(srcpath).filter(function(file) {
-  //   return fs.statSync(path.join(srcpath, file)).isDirectory();
-  // });
-}
+  var dirs = fs.readdirSync('Stash').filter((dir) => {
+    if (dir === '.DS_Store' || dir === 'Me') {
+      return false;
+    } else {
+      return true;
+    }
+  });
+  dirs = dirs.map((dir) => {
+    return 'Stash/' + dir;
+  });
 
-render(<AppContainer folders={[srcpath]}/>, document.getElementById('app'));
+  dirs.push('Stash/Me/Mine');
+  dirs.push('Stash/Me/Recommended');
+
+  return dirs;
+};
+
+render(<AppContainer folders={getFolders()}/>, document.getElementById('app'));

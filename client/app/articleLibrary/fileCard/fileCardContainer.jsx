@@ -1,12 +1,20 @@
 import React from 'react';
 
-var FileCardContainer = ({path}) => {
+class FileCardContainer extends React.Component {
 
-  console.log(path);
+  constructor(props) {
+    super(props);
+  }
 
-  return (
-    <a href={path}><iframe src={path.replace('/public', '')}></iframe></a> 
-  );
+  expand(url) {
+    // window.open(url);
+  }
+
+  render() {
+    return (
+      <iframe src={this.props.path.replace('/public', '')} onClick={this.expand.bind(this, this.props.path)}></iframe>
+    );
+  }
 };
 
 export default FileCardContainer;
