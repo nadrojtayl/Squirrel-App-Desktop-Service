@@ -1,8 +1,9 @@
 import React from 'react';
 
-var FolderPresentation = ({folder}) => (
+var FolderPresentation = (props) => (
   <div>
-    <h2>This is a folder</h2> 
+    <img width="10%" src="../client/assets/Folder-icon.png"/>
+    <p>This is a folder</p> 
   </div>
 );
 

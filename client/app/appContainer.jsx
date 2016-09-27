@@ -9,22 +9,23 @@ import AppPresentation from './appPresentation.jsx';
 class AppContainer extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {currentFolder: null};
   }
 
-  loadFolder() {
-    console.log('You loaded a folder!')
+  loadFolder(folderPath) {
+    this.setState({currentFolder: folderPath});
   }
 
   render() {
     return (
       <div className="app-container">
-        <AppPresentation folders={this.props.folders} loadFolder={this.loadFolder}/>
+        <AppPresentation folders={this.props.folders} loadFolder={this.loadFolder.bind(this)} folderPath={this.state.currentFolder}/>
       </div>
     )
   }
 };
 
-  var srcpath = `${__dirname}/../Stash/Jordan/`;
+  var srcpath = 'Stash/Jordan';
 var getFolders = function() {
   // return fs.readdirSync(srcpath).filter(function(file) {
   //   return fs.statSync(path.join(srcpath, file)).isDirectory();
