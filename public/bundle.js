@@ -27,7 +27,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "e4e72361dfb195bf2032"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "8dcafee7f24a132f2356"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -21779,9 +21779,13 @@
 
 	  return _react2.default.createElement(
 	    'div',
-	    null,
-	    _react2.default.createElement(_sidebarContainer2.default, { folders: props.folders, loadFolder: props.loadFolder }),
-	    _react2.default.createElement(_articleLibraryContainer2.default, { folderPath: props.folderPath })
+	    { className: 'grid' },
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'row' },
+	      _react2.default.createElement(_sidebarContainer2.default, { className: 'col-2', folders: props.folders, loadFolder: props.loadFolder }),
+	      _react2.default.createElement(_articleLibraryContainer2.default, { className: 'col-9', folderPath: props.folderPath })
+	    )
 	  );
 	};
 
@@ -21845,7 +21849,7 @@
 
 	  return _react2.default.createElement(
 	    'ul',
-	    { style: { display: 'inline-block', float: 'left' } },
+	    { style: { display: 'inline-block', float: 'left', 'listStyleType': "none" } },
 	    folders
 	  );
 	};
