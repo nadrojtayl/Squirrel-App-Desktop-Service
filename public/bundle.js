@@ -27,7 +27,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "49dc28a63cb7c540dba7"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "8f74f5a8b61516eccebb"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -22079,7 +22079,9 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement('img', { style: { display: 'inline' }, className: 'Acorns', width: '10%', src: 'client/assets/acorn.png', onClick: function onClick() {
+	        _react2.default.createElement('img', { draggable: 'true', onDragStart: function onDragStart(event) {
+	            drag(event);
+	          }, id: 'hello', style: { display: 'inline' }, className: 'Acorns', width: '10%', src: 'client/assets/acorn.png', onClick: function onClick() {
 	            _this2.expand.bind(_this2)(_this2.props.path);
 	          } }),
 	        _react2.default.createElement(
