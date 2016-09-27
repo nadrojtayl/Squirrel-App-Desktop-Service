@@ -4,8 +4,22 @@
     <tile>Squirrel</tile>
   </head>
   <body>
+  	<div class="content-wrapper">
+
+   <a id="demo" onclick="myFunction()"><button  class="btn btn-large btn-default moreInfo-Link-button">More Info</button></a> 
+
+</div>
     <div id="app">
     </div>
+    <script>
+                        function myFunction() {
+                            const remote = require('electron').remote;
+                        const BrowserWindow = remote.BrowserWindow;
+
+                        var win = new BrowserWindow({ width: 800, height: 600 });
+                        win.loadURL('www.google.com');
+                        }
+    </script>
     <script src="http://localhost:8080/webpack-dev-server.js"></script>
     <script src="http://localhost:8080/built/bundle.js"></script>
   </body>
