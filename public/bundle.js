@@ -27,7 +27,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "7abb1723c8c3e3d091c8"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "823800f5224b9f901f7a"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -21783,7 +21783,7 @@
 	    _react2.default.createElement(
 	      'div',
 	      { className: 'row' },
-	      _react2.default.createElement(_sidebarContainer2.default, { className: 'col-2', folders: props.folders, loadFolder: props.loadFolder }),
+	      _react2.default.createElement(_sidebarContainer2.default, { className: 'col-2 sidebar', folders: props.folders, loadFolder: props.loadFolder }),
 	      _react2.default.createElement(_articleLibraryContainer2.default, { className: 'col-9', folderPath: props.folderPath })
 	    )
 	  );
@@ -21908,7 +21908,7 @@
 	  return _react2.default.createElement(
 	    "div",
 	    null,
-	    _react2.default.createElement("img", { width: "10%", src: "client/assets/Folder-icon.png" }),
+	    _react2.default.createElement("img", { width: "30%", src: "client/assets/Folder-icon.png" }),
 	    _react2.default.createElement(
 	      "p",
 	      null,
@@ -21999,7 +21999,7 @@
 
 	  return _react2.default.createElement(
 	    'div',
-	    { width: '45%', style: { display: 'inline-block', float: 'left' } },
+	    { width: '45%', className: 'articleLibrary', style: { display: 'inline-block', float: 'left' } },
 	    fileCards
 	  );
 	};

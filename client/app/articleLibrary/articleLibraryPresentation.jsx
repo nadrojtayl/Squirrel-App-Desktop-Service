@@ -9,7 +9,7 @@ var ArticleLibraryPresentation = ({filePaths}) => {
   });
 
   return (
-    <div width = '45%' style = {{display:'inline-block',float: 'left'}}>
+    <div width = '45%' className= "articleLibrary" style = {{display:'inline-block',float: 'left'}}>
       {fileCards}
     </div>
   );

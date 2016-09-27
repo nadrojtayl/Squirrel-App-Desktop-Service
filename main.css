@@ -74,3 +74,20 @@ li{
 img{
  vertical-align:middle
 }
+
+.articleLibrary{
+	padding-left: 0px;
+	margin:0px;
+}
+
+ul{
+	width:40%;
+	padding:0px;
+	margin:0px;
+	display: inline-block;
+}
+
+.sidebar{
+	border-style: solid;
+    border-right-width: 15px;
+}
