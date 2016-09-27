@@ -1,5 +1,22 @@
 import React from 'react';
 
+var findsecondslash = function(string){
+  var foundone = 0;
+  var indextoreturn;
+  string.split('').forEach(function(char,index){
+    if(char === "/"){
+      if(foundone === 0){
+        foundone = 1;
+      } else {
+        indextoreturn = index;
+      }
+    }
+
+  })
+  return indextoreturn+1;
+  
+}
+
 class FileCardContainer extends React.Component {
 
   constructor(props) {
@@ -24,7 +41,7 @@ class FileCardContainer extends React.Component {
       <div>
       <img style = {{display:'inline'}} className= "Acorns" width="10%" src="client/assets/acorn.png" onClick={()=>{this.expand.bind(this)(this.props.path)}}></img>
       <div style = {{display:'inline'}} >
-        <h5 style = {{display:'inline'}} >{this.props.path}</h5>
+        <h5 style = {{display:'inline'}} >{this.props.path.slice(findsecondslash(this.props.path)).replace('.html',"")}</h5>
       </div>
       </div>
     );

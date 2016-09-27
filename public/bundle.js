@@ -27,7 +27,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "f362325c8809c936790f"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "7abb1723c8c3e3d091c8"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -22030,6 +22030,21 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+	var findsecondslash = function findsecondslash(string) {
+	  var foundone = 0;
+	  var indextoreturn;
+	  string.split('').forEach(function (char, index) {
+	    if (char === "/") {
+	      if (foundone === 0) {
+	        foundone = 1;
+	      } else {
+	        indextoreturn = index;
+	      }
+	    }
+	  });
+	  return indextoreturn + 1;
+	};
+
 	var FileCardContainer = function (_React$Component) {
 	  _inherits(FileCardContainer, _React$Component);
 
@@ -22069,7 +22084,7 @@
 	          _react2.default.createElement(
 	            'h5',
 	            { style: { display: 'inline' } },
-	            this.props.path
+	            this.props.path.slice(findsecondslash(this.props.path)).replace('.html', "")
 	          )
 	        )
 	      );
