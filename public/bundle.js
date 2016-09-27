@@ -27,7 +27,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "8dcafee7f24a132f2356"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "f362325c8809c936790f"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -22060,7 +22060,9 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement('img', { style: { display: 'inline' }, className: 'Acorns', width: '10%', src: 'client/assets/acorn.png' }),
+	        _react2.default.createElement('img', { style: { display: 'inline' }, className: 'Acorns', width: '10%', src: 'client/assets/acorn.png', onClick: function onClick() {
+	            _this2.expand.bind(_this2)(_this2.props.path);
+	          } }),
 	        _react2.default.createElement(
 	          'div',
 	          { style: { display: 'inline' } },
@@ -22068,13 +22070,6 @@
 	            'h5',
 	            { style: { display: 'inline' } },
 	            this.props.path
-	          ),
-	          _react2.default.createElement(
-	            'button',
-	            { style: { display: 'inline' }, onClick: function onClick() {
-	                _this2.expand.bind(_this2)(_this2.props.path);
-	              } },
-	            'Read more'
 	          )
 	        )
 	      );
