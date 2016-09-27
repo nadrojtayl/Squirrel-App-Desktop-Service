@@ -85,9 +85,19 @@ ul{
 	padding:0px;
 	margin:0px;
 	display: inline-block;
+	border-right-style: solid;
+    border-right-width: 1px;
+    text-align:center;
 }
 
 .sidebar{
-	border-style: solid;
+	border-right-style: solid;
     border-right-width: 15px;
+}
+
+#topbar{
+	border-bottom-style: solid;
+    border-bottom-width: 1px;
+    margin:0px;
+    width:100%;
 }
