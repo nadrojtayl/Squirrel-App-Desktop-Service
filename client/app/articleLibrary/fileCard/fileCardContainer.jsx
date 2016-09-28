@@ -38,7 +38,7 @@ class FileCardContainer extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className = "teal">
         <img draggable="true" onDragStart={function(event){drag(event)}} id="hello" style = {{display:'inline'}} className= "Acorns" width="10%" src="client/assets/acorn.png" onClick={()=>{this.expand.bind(this)(this.props.path)}}></img>
         <div style = {{display:'inline'}} className = "vAlign">
           <h5 className = "titles"style = {{display:'inline'}} >{this.props.path.slice(findsecondslash(this.props.path)).replace('.html',"")}</h5>

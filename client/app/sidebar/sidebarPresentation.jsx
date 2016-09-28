@@ -9,7 +9,7 @@ var SidebarPresentation = (props) => {
 
   return (
 
-  <div className = "easyui-panel" style={{width:'500px',height:'600px',position:'relative'}}>
+  <div className = "easyui-panel side-nav full" style={{width:'500px',height:'600px',position:'relative'}}>
     
     {folders}	
 

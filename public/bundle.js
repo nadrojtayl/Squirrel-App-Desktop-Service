@@ -27,7 +27,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "bb530cde497217597a57"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "95c712756ffb8b669d02"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -21845,7 +21845,7 @@
 
 	  return _react2.default.createElement(
 	    'div',
-	    { className: 'easyui-panel', style: { width: '500px', height: '600px', position: 'relative' } },
+	    { className: 'easyui-panel side-nav full', style: { width: '500px', height: '600px', position: 'relative' } },
 	    folders
 	  );
 	};
@@ -22081,7 +22081,7 @@
 
 	      return _react2.default.createElement(
 	        'div',
-	        null,
+	        { className: 'teal' },
 	        _react2.default.createElement('img', { draggable: 'true', onDragStart: function onDragStart(event) {
 	            drag(event);
 	          }, id: 'hello', style: { display: 'inline' }, className: 'Acorns', width: '10%', src: 'client/assets/acorn.png', onClick: function onClick() {
