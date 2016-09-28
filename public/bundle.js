@@ -27,7 +27,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "da8488700bdd32357c1e"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "b40247fb0c45e30e52bf"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -21875,7 +21875,7 @@
 	var FolderContainer = function FolderContainer(props) {
 	  return _react2.default.createElement(
 	    'div',
-	    { className: 'easyui-draggable', style: { width: '100px', height: '100px', background: '#fafafa', border: '1px solid #ccc' }, 'data-options': 'onDrag:onDrag', onClick: function onClick() {
+	    { className: 'easyui-draggable', style: { width: '100px', height: '100px' }, 'data-options': 'onDrag:onDrag', onClick: function onClick() {
 	        return props.loadFolder(props.folder);
 	      } },
 	    _react2.default.createElement('img', { width: '30%', src: 'client/assets/Folder-icon.png', onDrop: function onDrop(event) {
@@ -21897,7 +21897,7 @@
 /* 177 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -21911,16 +21911,18 @@
 
 	var FolderPresentation = function FolderPresentation(props) {
 	  return _react2.default.createElement(
-	    "div",
-	    { width: "30%" },
-	    _react2.default.createElement("img", { width: "30%", src: "client/assets/Folder-icon.png", onDrop: function onDrop(event) {
+	    'div',
+	    { className: 'easyui-draggable', style: { width: '100px', height: '100px' }, 'data-options': 'onDrag:onDrag', onClick: function onClick() {
+	        return props.loadFolder(props.folder);
+	      } },
+	    _react2.default.createElement('img', { width: '30%', src: 'client/assets/Folder-icon.png', onDrop: function onDrop(event) {
 	        drop(event);
 	      }, onDragOver: function onDragOver(event) {
 	        allowDrop(event);
 	      } }),
 	    _react2.default.createElement(
-	      "p",
-	      { width: "30%" },
+	      'p',
+	      { width: '30%' },
 	      props.folder.replace('Stash/', "")
 	    )
 	  );
