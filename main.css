@@ -72,7 +72,7 @@ li{
 }
 
 img{
- vertical-align:middle
+ vertical-align:middle;
 }
 
 .articleLibrary{
@@ -125,4 +125,16 @@ html{
 
 .vAlign{
 	vertical-align:top;
+}
+
+
+img{
+width:80%;
+height:80%;
+}
+
+.Acorns{
+    vertical-align:middle;  
+    width:10%;
+    height:10%;
 }

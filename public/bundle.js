@@ -27,7 +27,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "b40247fb0c45e30e52bf"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "dd532683a9e131b4a481"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -21915,14 +21915,14 @@
 	    { className: 'easyui-draggable', style: { width: '100px', height: '100px' }, 'data-options': 'onDrag:onDrag', onClick: function onClick() {
 	        return props.loadFolder(props.folder);
 	      } },
-	    _react2.default.createElement('img', { width: '30%', src: 'client/assets/Folder-icon.png', onDrop: function onDrop(event) {
+	    _react2.default.createElement('img', { className: 'folders', src: 'client/assets/Folder-icon.png', onDrop: function onDrop(event) {
 	        drop(event);
 	      }, onDragOver: function onDragOver(event) {
 	        allowDrop(event);
 	      } }),
 	    _react2.default.createElement(
 	      'p',
-	      { width: '30%' },
+	      null,
 	      props.folder.replace('Stash/', "")
 	    )
 	  );
