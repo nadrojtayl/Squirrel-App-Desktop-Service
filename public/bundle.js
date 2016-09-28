@@ -27,7 +27,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "8f74f5a8b61516eccebb"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "03fb335bbcfba07af5ae"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -21840,16 +21840,12 @@
 	var SidebarPresentation = function SidebarPresentation(props) {
 
 	  var folders = props.folders.map(function (folder, index) {
-	    return _react2.default.createElement(
-	      'li',
-	      { className: 'folder-list-item', key: index },
-	      _react2.default.createElement(_folderContainer2.default, { folder: folder, loadFolder: props.loadFolder })
-	    );
+	    return _react2.default.createElement(_folderContainer2.default, { folder: folder, loadFolder: props.loadFolder });
 	  });
 
 	  return _react2.default.createElement(
-	    'ul',
-	    { style: { display: 'inline-block', float: 'left', 'listStyleType': "none" } },
+	    'div',
+	    { className: 'easyui-panel', style: { width: '500px', height: '600px' } },
 	    folders
 	  );
 	};
@@ -21879,7 +21875,7 @@
 	var FolderContainer = function FolderContainer(props) {
 	  return _react2.default.createElement(
 	    'div',
-	    { onClick: function onClick() {
+	    { width: '30%', className: 'easyui-draggable', 'data-options': 'onDrag:onDrag', onClick: function onClick() {
 	        return props.loadFolder(props.folder);
 	      } },
 	    _react2.default.createElement(_folderPresentation2.default, { folder: props.folder })
@@ -21907,7 +21903,7 @@
 	var FolderPresentation = function FolderPresentation(props) {
 	  return _react2.default.createElement(
 	    "div",
-	    null,
+	    { width: "30%" },
 	    _react2.default.createElement("img", { width: "30%", src: "client/assets/Folder-icon.png", onDrop: function onDrop(event) {
 	        drop(event);
 	      }, onDragOver: function onDragOver(event) {
@@ -21915,7 +21911,7 @@
 	      } }),
 	    _react2.default.createElement(
 	      "p",
-	      null,
+	      { width: "30%" },
 	      props.folder.replace('Stash/', "")
 	    )
 	  );
