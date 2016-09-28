@@ -27,7 +27,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "03fb335bbcfba07af5ae"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "da8488700bdd32357c1e"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -21845,7 +21845,7 @@
 
 	  return _react2.default.createElement(
 	    'div',
-	    { className: 'easyui-panel', style: { width: '500px', height: '600px' } },
+	    { className: 'easyui-panel', style: { width: '500px', height: '600px', position: 'relative' } },
 	    folders
 	  );
 	};
@@ -21875,10 +21875,19 @@
 	var FolderContainer = function FolderContainer(props) {
 	  return _react2.default.createElement(
 	    'div',
-	    { width: '30%', className: 'easyui-draggable', 'data-options': 'onDrag:onDrag', onClick: function onClick() {
+	    { className: 'easyui-draggable', style: { width: '100px', height: '100px', background: '#fafafa', border: '1px solid #ccc' }, 'data-options': 'onDrag:onDrag', onClick: function onClick() {
 	        return props.loadFolder(props.folder);
 	      } },
-	    _react2.default.createElement(_folderPresentation2.default, { folder: props.folder })
+	    _react2.default.createElement('img', { width: '30%', src: 'client/assets/Folder-icon.png', onDrop: function onDrop(event) {
+	        drop(event);
+	      }, onDragOver: function onDragOver(event) {
+	        allowDrop(event);
+	      } }),
+	    _react2.default.createElement(
+	      'p',
+	      { width: '30%' },
+	      props.folder.replace('Stash/', "")
+	    )
 	  );
 	};
 
