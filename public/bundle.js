@@ -27,7 +27,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "dd532683a9e131b4a481"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "b49777206f86707e4c2c"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -22001,16 +22001,12 @@
 
 
 	  var fileCards = filePaths.map(function (filePath, i) {
-	    return _react2.default.createElement(
-	      'li',
-	      { key: i },
-	      _react2.default.createElement(_fileCardContainer2.default, { path: filePath })
-	    );
+	    return _react2.default.createElement(_fileCardContainer2.default, { path: filePath });
 	  });
 
 	  return _react2.default.createElement(
 	    'div',
-	    { width: '45%', className: 'articleLibrary', style: { display: 'inline-block', float: 'left' } },
+	    { className: 'easyui-panel', style: { width: '500px', height: '600px', position: 'relative' } },
 	    fileCards
 	  );
 	};
