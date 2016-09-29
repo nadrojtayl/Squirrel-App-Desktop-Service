@@ -61,7 +61,7 @@ module.exports.call = () => {
 
       ownLinks = linksObject.ownLinks
       recommendedLinks = linksObject.recommendedLinks;
-      console.log('LINKS',ownLinks)
+      //console.log('LINKS',ownLinks)
       for (key in ownLinks) {
         var userid = key.split('%')[0];
         var username = key.split('%')[1];
@@ -109,22 +109,28 @@ module.exports.call = () => {
 
 
 function getLinks(username, userid, links, key, type) {
+ // console.log('username',links);
   for (var i = 0; i < links[key].length; i++) {
     var url = links[key][i];
+    //console.log('ur',url);
     axios ({
       method: 'get',
       url: url
     })
     .then((res) => {
+     // console.log('RES',res)
       var $ = cheerio.load(res.data);
       var title = $('title').text(); //.replace(/[\s|]/g, '');
+     // console.log('TITLE',title);
       // console.log(title);
       if (userid === id) {
         var path = `Stash/Me/${type}/${title}.html`;
+        console.log('path',path)
       } else {
         var dir;
         type === 'Mine' ? dir = `Stash/${username}/` : dir = `Stash/Me/Recommended/${username}`
         var path = `${dir}/${title}.html`;
+        console.log('path',path);
         //console.log(path);  
         if (!fs.existsSync(dir)) {
           fs.mkdirSync(dir);           
