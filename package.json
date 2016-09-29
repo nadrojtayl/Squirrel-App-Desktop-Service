@@ -44,7 +44,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "./node_modules/electron-prebuilt/dist/Electron.app/Contents/MacOS/Electron .",
+    "start": "./node_modules/electron/dist/Electron.app/Contents/MacOS/Electron .",
     "watch": "./node_modules/.bin/webpack-dev-server",
     "electron-rebuild": "./node_modules/.bin/electron-rebuild"
   },
