@@ -5,7 +5,7 @@ var cheerio = require('cheerio');
 var id = '10105564501516258'; //<== hard coded for now. We need to figure out how to get desktop user ID from DB
 var name = 'Michael Wong'; // need a way to log int to get these before hand!
 
-console.log('I ran!');
+console.log('I ran! Definitely');
 
 module.exports.call = () => {
   //Mike's ridiculous refactoring data code below... :/
@@ -17,12 +17,13 @@ module.exports.call = () => {
   // }
   })
   .then((res) => {
-    // console.log(res.data, 'here are the res ');
+    
+
     var linksObject = { 
       ownLinks: {},
       recommendedLinks: {},
     };
-    
+    //console.log(res.data);
     res.data.forEach((curr) => {
       if(curr.assignee === id){
         linksObject.ownLinks[`${id}%${name}`] = linksObject.ownLinks[`${id}%${name}`] || [];
@@ -35,14 +36,16 @@ module.exports.call = () => {
     return {res: res, linksObject: linksObject};
   })
   .then((data) => {
+    
     axios.get(`http://localhost:8888/friends/${id}`)
     .then((res2) => {
-      console.log(data.res.data, 'here is res2');
-
+     // console.log(data, 'here is res2');
+      //console.log(data);
       var friendsList = {};
       var linksObject = data.linksObject;
-
-      res2.data.forEach((friend) => {
+       console.log('res2.data',res2.data.friends)
+       res2.data.friends.forEach(function(friend){
+        //console.log('INSIDE');
         var friendId = friend.fbid;
         var friendName = friend.fbname;
         var friendLinks = friend.links.map((link) => {
@@ -54,12 +57,11 @@ module.exports.call = () => {
         }
         friendsList[friendId] = friendName;
         linksObject.ownLinks[`${friendId}%${friendName}`] = friendLinks;
-      });
+       });
 
-      console.log(linksObject, 'links Object');
-      
       ownLinks = linksObject.ownLinks
       recommendedLinks = linksObject.recommendedLinks;
+      console.log('LINKS',ownLinks)
       for (key in ownLinks) {
         var userid = key.split('%')[0];
         var username = key.split('%')[1];
