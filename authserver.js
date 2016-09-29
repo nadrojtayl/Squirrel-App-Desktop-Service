@@ -1,4 +1,4 @@
-var APIKeys = require('./config');
+var APIKeys = require('./config.js');
 var request = require('request');
 var rp = require('request-promise');
 var FacebookStrategy = require('passport-facebook').Strategy;
@@ -43,6 +43,10 @@ app.get('/auth/twitter/callback',
     successRedirect: '/',
     failureRedirect: '/login'
   }));
+
+app.get('/',function(req,res){
+  res.sendFile(__dirname + '/test.html')
+})
 
 app.listen('3030', function() {
   console.log('listening on port 3010!');
