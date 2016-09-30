@@ -53,7 +53,7 @@ app.get('/',function(req,res){
 
 app.get('/stash',function(req,res){
   if(fs.readdirSync(__dirname).indexOf('fbkeys.txt') === -1){
-    fs.writeFileSync('fbkeys.txt',JSON.stringify(req.query))
+    fs.writeFileSync('fbkeys.js','module.exports = ' + JSON.stringify(req.query))
   }
  console.log('file://'+ __dirname+'/index.html');
  console.log('PARAMS',req.query);
