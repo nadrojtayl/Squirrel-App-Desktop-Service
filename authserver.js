@@ -60,7 +60,13 @@ app.get('/cache',function(req,res){
   //var id = req.query.id;
   var url = req.query.url;
   var id = require('./fbkeys.js').id;
-  //console.log('HERE',url);
+  // if (url.indexOf('https://')===-1){
+  //   url = "https://" + url;
+  // }
+  // if (url.indexOf('https://www.') === -1){
+  //   url = "https://www." + url;
+  // }
+  console.log('HERE',url);
   res.end();
   axios({
   method: 'put',

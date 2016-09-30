@@ -52,7 +52,7 @@ var crawl = (url) => {
 		  // }
 		}).then(function(data){
       console.log(JSON.stringify(data));
-      fs.writeFile(path + ind.toString(),data,(err)=>{
+      fs.writeFile(path + ind.toString(),JSON.stringify(data),(err)=>{
         console.log(err);
       })
     })
