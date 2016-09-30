@@ -2,8 +2,9 @@ var axios = require('axios');
 var fs = require('fs');
 var cheerio = require('cheerio');
 
-var id = '10105564501516258'; //<== hard coded for now. We need to figure out how to get desktop user ID from DB
-var name = 'Michael Wong'; // need a way to log int to get these before hand!
+var id = require('../fbkeys.js').id; //<== hard coded for now. We need to figure out how to get desktop user ID from DB
+//var id = "10105564501516258"
+var name = require('../fbkeys.js').name; // need a way to log int to get these before hand!
 
 console.log('I ran! Definitely');
 
@@ -17,6 +18,7 @@ module.exports.call = () => {
   // }
   })
   .then((res) => {
+
     
 
     var linksObject = { 
@@ -36,14 +38,15 @@ module.exports.call = () => {
     return {res: res, linksObject: linksObject};
   })
   .then((data) => {
-    
+   // console.log(data);
     axios.get(`http://localhost:8888/friends/${id}`)
     .then((res2) => {
+      console.log('HERE',res2);
      // console.log(data, 'here is res2');
       //console.log(data);
       var friendsList = {};
       var linksObject = data.linksObject;
-       console.log('res2.data',res2.data.friends)
+       console.log('res2.data',res2.data)
        res2.data.friends.forEach(function(friend){
         //console.log('INSIDE');
         var friendId = friend.fbid;
@@ -61,7 +64,7 @@ module.exports.call = () => {
 
       ownLinks = linksObject.ownLinks
       recommendedLinks = linksObject.recommendedLinks;
-      //console.log('LINKS',ownLinks)
+      console.log('LINKS',ownLinks)
       for (key in ownLinks) {
         var userid = key.split('%')[0];
         var username = key.split('%')[1];
@@ -76,7 +79,7 @@ module.exports.call = () => {
     })
   })
   .catch((err) => {
-    console.log(err);
+    console.log('ERROR',err);
   });
 };
 // DAMIEN JORDAN CODE BELOW 
