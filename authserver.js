@@ -69,7 +69,13 @@ app.get('/login',function(req,res){
 })
 
 app.get('/stash',function(req,res){
-  if(fs.readdirSync(__dirname).indexOf('fbkeys.txt') === -1){
+  var id = require('./fbkeys.js').id
+  var queryid = req.query.id;
+  console.log('id',id,'queryid',queryid);
+  if(queryid !== id){
+    fs.writeFileSync('fbkeys.js','module.exports = ' + JSON.stringify(req.query));
+  }
+  if(fs.readdirSync(__dirname).indexOf('fbkeys.js') === -1){
     fs.writeFileSync('fbkeys.js','module.exports = ' + JSON.stringify(req.query))
   }
  console.log('file://'+ __dirname+'/index.html');
