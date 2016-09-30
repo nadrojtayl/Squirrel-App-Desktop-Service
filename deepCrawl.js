@@ -23,7 +23,7 @@ var crawl = (url) => {
     })
     links = linksToArticles;
     //console.log('LINKStoarticles',linksToArticles);
-    //console.log('LINKS',links);
+    //console.log('LINKStoarticles',links);
     var title = $('title').text(); //.replace(/[\s|]/g, '');
     var path = `Stash/Me/Mine/${title}`
     fs.mkdir(path,function(err){
@@ -36,18 +36,32 @@ var crawl = (url) => {
 	    }
 	  })
 	 var path = `Stash/Me/Mine/${title}/`;
-	 links.each(function(ind,link){
+   links = links.map(function(link){
+    return link.attribs.href
+   })
+   console.log('LINKS',links);
+	 links.forEach(function(link,ind){
+    //console.log(link.attribs.href)
+    console.log(link);
+
 	 	axios({
 		  method: 'get',
 		  url: link
 		  // params: {
 		  //   userid: id
 		  // }
-		})
+		}).then(function(data){
+      console.log(JSON.stringify(data));
+      fs.writeFile(path + ind.toString(),data,(err)=>{
+        console.log(err);
+      })
+    })
+
+
 	 })
   })
-  .then(()=>{
-
+  .then((data)=>{
+    console.log(data);
   })
   .catch((err) => {
     console.log(err);
