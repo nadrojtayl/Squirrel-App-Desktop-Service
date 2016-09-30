@@ -50,6 +50,7 @@
 	    //ev.target.appendChild(document.getElementById(data));
 	}
 	</script>
+    <button onclick="window.location.href = 'http://localhost:3030/login'">Login with different fb account</button>
     <div id="app"> <!-- <===== entry point for REACT ! -->
     </div>
     <script>
@@ -68,8 +69,15 @@
         d.top = $(d.parent).height() - $(d.target).outerHeight();
       }
     }
-  </script>\
+  </script>
   <script src="public/bundle.js"></script>
+  <div>
+    <form action = "/cache">
+      <label>Type in a URL to add to Me/Mine</label>
+      <input type ="text" name="url"></input>
+      <button type="submit">Add</button>
+    </form>
+  </div>
     <!-- <script src="http://localhost:8080/webpack-dev-server.js"></script>
     <script src="http://localhost:8080/built/bundle.js"></script> -->
   </body>

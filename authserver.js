@@ -48,7 +48,16 @@ app.get('/auth/twitter/callback',
   }));
 
 app.get('/',function(req,res){
+  if(fs.readdirSync(__dirname).indexOf('fbkeys.txt') === -1){
+    global.login.loadURL('file://'+ __dirname+'/index.html');
+    res.end()
+  }
   res.sendFile(__dirname + '/test.html')
+})
+
+app.get('/login',function(req,res){
+  res.sendFile(__dirname + '/test.html')
+  //res.end();
 })
 
 app.get('/stash',function(req,res){
@@ -61,7 +70,8 @@ app.get('/stash',function(req,res){
   //console.log('LOGIN',global.login.loadURL,'LOGIN');
   //global.login.loadUrl('www.google.com')
   //res.end();
-  res.sendFile(__dirname + '/index.html');
+ // res.sendFile(__dirname + '/index.html');
+ res.end();
 })
 
 app.listen('3030', function() {
