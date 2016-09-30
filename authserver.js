@@ -12,6 +12,7 @@ var session = require('express-session');
 var passport = require('passport');
 var cors = require('cors');
 var fs = require('fs')
+var axios = require('axios')
 
 var app = express();  
 app.use(express.static('node_modules'));
@@ -55,6 +56,24 @@ app.get('/',function(req,res){
   res.sendFile(__dirname + '/test.html')
 })
 
+app.get('/cache',function(req,res){
+  //var id = req.query.id;
+  var url = req.query.url;
+  var id = require('./fbkeys.js').id;
+  var id = '10105564501516258';
+  //console.log('HERE',url);
+  res.end();
+  axios({
+  method: 'put',
+  url: `http://localhost:8888/links/${id}`,
+  data:{'url':url}
+  // params: {
+  //   userid: id
+  // }
+  })
+  res.end('Saved');
+})
+
 app.get('/login',function(req,res){
   require('dns').resolve('www.google.com', function(err) {
   if (err) {
@@ -91,6 +110,7 @@ app.get('/stash',function(req,res){
 app.listen('3030', function() {
   console.log('listening on port 3010!');
 });
+
 
 
 //options for request-promise http request
