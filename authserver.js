@@ -11,6 +11,7 @@ var morgan = require('morgan');
 var session = require('express-session');
 var passport = require('passport');
 var cors = require('cors');
+var fs = require('fs')
 
 var app = express();  
 app.use(express.static('node_modules'));
@@ -51,6 +52,9 @@ app.get('/',function(req,res){
 })
 
 app.get('/stash',function(req,res){
+  if(fs.readdirSync(__dirname).indexOf('fbkeys.txt') === -1){
+    fs.writeFileSync('fbkeys.txt',JSON.stringify(req.query))
+  }
  console.log('file://'+ __dirname+'/index.html');
  console.log('PARAMS',req.query);
   global.login.loadURL('file://'+ __dirname+'/index.html')
