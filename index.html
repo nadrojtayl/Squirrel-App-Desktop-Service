@@ -50,7 +50,12 @@
 	    //ev.target.appendChild(document.getElementById(data));
 	}
 	</script>
-    <button onclick="window.location.href = 'http://localhost:3030/login'">Login with different fb account</button>
+    <script>
+    function isInternet(){
+      $.ajax({url:'http://www.google.com',method:'GET',success:function(){console.log('success');window.location.href = 'http://localhost:3030/login'},error:function(){alert('You need to be connected to the internet to login with a new FB account')}})
+    }
+    </script>
+    <button onclick="isInternet()">Login with different fb account</button>
     <div id="app"> <!-- <===== entry point for REACT ! -->
     </div>
     <script>

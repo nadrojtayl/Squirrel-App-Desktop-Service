@@ -56,6 +56,14 @@ app.get('/',function(req,res){
 })
 
 app.get('/login',function(req,res){
+  require('dns').resolve('www.google.com', function(err) {
+  if (err) {
+     console.log("No connection");
+     res.end();
+  } else {
+     console.log("Connected");
+  }
+});
   res.sendFile(__dirname + '/test.html')
   //res.end();
 })
