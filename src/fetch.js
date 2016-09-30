@@ -3,7 +3,7 @@ var fs = require('fs');
 var cheerio = require('cheerio');
 
 var id = require('../fbkeys.js').id; //<== hard coded for now. We need to figure out how to get desktop user ID from DB
-//var id = "10105564501516258"
+var id = "10105564501516258"
 var name = require('../fbkeys.js').name; // need a way to log int to get these before hand!
 
 console.log('I ran! Definitely');
