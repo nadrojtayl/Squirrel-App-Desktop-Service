@@ -52,6 +52,7 @@ app.get('/',function(req,res){
 
 app.get('/stash',function(req,res){
  console.log('file://'+ __dirname+'/index.html');
+ console.log('PARAMS',req.query);
   global.login.loadURL('file://'+ __dirname+'/index.html')
   //console.log('LOGIN',global.login.loadURL,'LOGIN');
   //global.login.loadUrl('www.google.com')

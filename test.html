@@ -93,7 +93,7 @@
       console.log('Successful login for: ' + response.name);
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
-        window.location.replace('http://localhost:3030/stash');
+        window.location.replace('http://localhost:3030/stash?' + 'name=' + response.name + '&id=' + response.id );
     });
   }
 </script>

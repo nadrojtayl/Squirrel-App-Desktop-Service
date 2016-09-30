@@ -21,13 +21,13 @@ app.on('ready', function(){
     "web-preferences": {
       "web-security": false
     }});
-  var win = new BrowserWindow({width: 1360, title:'Your stash',height: 800, "node-integration": "iframe", // and this line
-    "web-preferences": {
-      "web-security": false
-    }});
+  // var win = new BrowserWindow({width: 1360, title:'Your stash',height: 800, "node-integration": "iframe", // and this line
+  //   "web-preferences": {
+  //     "web-security": false
+  //   }});
 
   console.log(`file://${__dirname}/index.html`)
-  win.loadURL(`file://${__dirname}/index.html`);
+  //win.loadURL(`file://${__dirname}/index.html`);
   global.login.loadURL(`http://localhost:3030`);
 });
 
