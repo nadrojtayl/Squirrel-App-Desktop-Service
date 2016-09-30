@@ -33,12 +33,15 @@ var getFolders = function() {
       return true;
     }
   });
-  console.log(dirs);
+  console.log('DIRS',dirs);
   dirs = dirs.map((dir) => {
     return 'Stash/' + dir;
   });
 
   dirs.push('Stash/Me/Mine');
+  fs.readdirSync('Stash/Me/Recommended').forEach(function(path){
+    dirs.push('Stash/Me/Recommended/' + path)
+  })
   dirs.push('Stash/Me/Recommended');
 
   return dirs;

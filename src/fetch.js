@@ -18,7 +18,7 @@ module.exports.call = () => {
   })
   .then((res) => {
 
-    
+    //console.log('DATA',res)
 
     var linksObject = { 
       ownLinks: {},
@@ -37,16 +37,17 @@ module.exports.call = () => {
     return {res: res, linksObject: linksObject};
   })
   .then((data) => {
-   // console.log(data);
+    //console.log('DATA',data);
     axios.get(`http://localhost:8888/friends/${id}`)
     .then((res2) => {
-      console.log('HERE',res2);
+      //console.log('HERE',res2);
      // console.log(data, 'here is res2');
       //console.log(data);
       var friendsList = {};
       var linksObject = data.linksObject;
-       console.log('res2.data',res2.data)
+       //console.log('DATA IS',res2.data)
        res2.data.friends.forEach(function(friend){
+        //console.log(res2.d)
         //console.log('INSIDE');
         var friendId = friend.fbid;
         var friendName = friend.fbname;
@@ -63,7 +64,8 @@ module.exports.call = () => {
 
       ownLinks = linksObject.ownLinks
       recommendedLinks = linksObject.recommendedLinks;
-      console.log('LINKS',ownLinks)
+      //console.log('RECDLINKS',recommendedLinks)
+      //console.log('LINKS',ownLinks)
       for (key in ownLinks) {
         var userid = key.split('%')[0];
         var username = key.split('%')[1];
@@ -72,6 +74,7 @@ module.exports.call = () => {
       for (key in recommendedLinks) {
         var userid = key.split('%')[0];
         var username = key.split('%')[1];
+        //console.log('USERNAME',key);
         getLinks(username, userid, recommendedLinks, key, 'Recommended');
       }
 
@@ -127,12 +130,12 @@ function getLinks(username, userid, links, key, type) {
       // console.log(title);
       if (userid === id) {
         var path = `Stash/Me/${type}/${title}.html`;
-        console.log('path',path)
+       // console.log('path',path)
       } else {
         var dir;
         type === 'Mine' ? dir = `Stash/${username}/` : dir = `Stash/Me/Recommended/${username}`
         var path = `${dir}/${title}.html`;
-        console.log('path',path);
+        //console.log('pathhere',path);
         //console.log(path);  
         if (!fs.existsSync(dir)) {
           fs.mkdirSync(dir);           
