@@ -1,5 +1,6 @@
 <html>
 <head>
+  <script src="jquery/dist/jquery.js"></script>
 </head>
 <body>
 <div>
@@ -88,9 +89,11 @@
   function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
+      console.log(response);
       console.log('Successful login for: ' + response.name);
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
+        window.location.replace('http://localhost:3030/stash');
     });
   }
 </script>
@@ -101,7 +104,7 @@
   the FB.login() function when clicked.
 -->
 
-<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+<fb:login-button onclick="console.log('yo')"scope="public_profile,email" onlogin="checkLoginState();">
 </fb:login-button>
 
 <div id="status">

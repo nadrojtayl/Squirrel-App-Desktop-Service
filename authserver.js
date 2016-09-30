@@ -13,6 +13,7 @@ var passport = require('passport');
 var cors = require('cors');
 
 var app = express();  
+app.use(express.static('node_modules'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(session({ 
@@ -36,6 +37,7 @@ app.get('/auth/facebook/callback',
     failureRedirect: 'http://localhost:3010/'
   }));
 
+
 app.get('/auth/twitter', passport.authenticate('twitter'));
 
 app.get('/auth/twitter/callback',
@@ -46,6 +48,15 @@ app.get('/auth/twitter/callback',
 
 app.get('/',function(req,res){
   res.sendFile(__dirname + '/test.html')
+})
+
+app.get('/stash',function(req,res){
+ console.log('file://'+ __dirname+'/index.html');
+  global.login.loadURL('file://'+ __dirname+'/index.html')
+  //console.log('LOGIN',global.login.loadURL,'LOGIN');
+  //global.login.loadUrl('www.google.com')
+  //res.end();
+  res.sendFile(__dirname + '/index.html');
 })
 
 app.listen('3030', function() {
