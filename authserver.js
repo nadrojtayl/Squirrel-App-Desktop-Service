@@ -49,7 +49,7 @@ app.get('/auth/twitter/callback',
   }));
 
 app.get('/',function(req,res){
-  if(fs.readdirSync(__dirname).indexOf('fbkeys.txt') === -1){
+  if(fs.readdirSync(__dirname).indexOf('fbkeys.txt') !== -1){
     global.login.loadURL('file://'+ __dirname+'/index.html');
     res.end()
   }

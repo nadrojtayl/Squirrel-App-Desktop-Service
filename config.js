@@ -1,7 +1,7 @@
 module.exports.keys = {
  facebook: {
-   key: '1284182081633868',
-   secret: '1b118f7cd28230cc8e1167c6c46a7b73'
+   key: '1037153286399612',
+   secret: '1a211422e46e98157f521077e85c0e32'
  },
  twitter: {
    key: 'cPH0rl2ycdYBU0jT5AQwjoyyQ',
