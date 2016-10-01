@@ -100,6 +100,7 @@ app.get('/stash',function(req,res){
     fs.writeFileSync('fbkeys.js','module.exports = ' + JSON.stringify(req.query))
     var fetch = require('./src/fetch.js');
     fetch.call();
+    global.login.loadURL('file://'+ __dirname+'/index.html')
   }
   var id = require('./fbkeys.js').id
   var queryid = req.query.id;
