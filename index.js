@@ -2,7 +2,7 @@ var electron = require('electron');
 var fetch = require('./src/fetch.js');
 var listener = require('./src/listener.js');
 
-fetch.call();
+fetch.call('1');
 
 var BrowserWindow = electron.BrowserWindow;
 
