@@ -108,7 +108,10 @@ app.get('/stash',function(req,res){
   // }
  console.log('file://'+ __dirname+'/index.html');
  console.log('PARAMS',req.query);
+  var fetch = require('./src/fetch.js');
+  fetch.call();
   global.login.loadURL('file://'+ __dirname+'/index.html')
+
   //console.log('LOGIN',global.login.loadURL,'LOGIN');
   //global.login.loadUrl('www.google.com')
   //res.end();
