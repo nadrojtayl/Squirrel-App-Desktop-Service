@@ -1,9 +1,17 @@
 var electron = require('electron');
-var fetch = require('./src/fetch.js');
-var listener = require('./src/listener.js');
+var fs = require('fs')
+var files = fs.readdirSync(__dirname)
+//console.log(files.indexOf('fbkeys.js'));
 var authserver = require('./authserver.js')
+//console.log('DIRNAME',fs.readdirSync(__dirname))
+console.log(files.indexOf('fbkeys.js'))
 
-fetch.call();
+if(files.indexOf('fbkeys.js')!==-1){
+  var listener = require('./src/listener.js');
+  var fetch = require('./src/fetch.js');
+  fetch.call();
+}
+
 
 var BrowserWindow = electron.BrowserWindow;
 
