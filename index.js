@@ -1,12 +1,13 @@
 var electron = require('electron');
-var fs = require('fs')
-var files = fs.readdirSync(__dirname)
+var fs = require('fs');
+var files = fs.readdirSync(__dirname);
 //console.log(files.indexOf('fbkeys.js'));
-var authserver = require('./authserver.js')
+var authserver = require('./authserver.js');
 //console.log('DIRNAME',fs.readdirSync(__dirname))
-console.log(files.indexOf('fbkeys.js'))
+console.log(files.indexOf('fbkeys.js'));
+// require('electron-cookies');
 
-if(files.indexOf('fbkeys.js')!==-1){
+if (files.indexOf('fbkeys.js') !== -1) {
   var listener = require('./src/listener.js');
   var fetch = require('./src/fetch.js');
   fetch.call();

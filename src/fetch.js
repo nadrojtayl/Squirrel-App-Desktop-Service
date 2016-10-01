@@ -18,14 +18,14 @@ module.exports.call = () => {
   })
   .then((res) => {
 
-    //console.log('DATA',res)
+    // console.log('DATA',res.data[0])
 
     var linksObject = { 
       ownLinks: {},
       recommendedLinks: {},
     };
-    //console.log(res.data);
-    res.data.forEach((curr) => {
+    console.log(res.data[1]);
+    res.data[0].forEach((curr) => {
       if(curr.assignee === id){
         linksObject.ownLinks[`${id}%${name}`] = linksObject.ownLinks[`${id}%${name}`] || [];
         linksObject.ownLinks[`${id}%${name}`].push(curr.url);
@@ -37,15 +37,17 @@ module.exports.call = () => {
     return {res: res, linksObject: linksObject};
   })
   .then((data) => {
-    //console.log('DATA',data);
+    // console.log('DATA',data);
     axios.get(`http://localhost:8888/friends/${id}`)
     .then((res2) => {
-      //console.log('HERE',res2);
+      // console.log('HERE',res2);
      // console.log(data, 'here is res2');
       //console.log(data);
       var friendsList = {};
       var linksObject = data.linksObject;
        //console.log('DATA IS',res2.data)
+       console.log('line64', res2)
+       res2.data = {friends: res2.data};
        res2.data.friends.forEach(function(friend){
         //console.log(res2.d)
         //console.log('INSIDE');
@@ -61,11 +63,11 @@ module.exports.call = () => {
         friendsList[friendId] = friendName;
         linksObject.ownLinks[`${friendId}%${friendName}`] = friendLinks;
        });
-
+       // console.log('made it here line 66');
       ownLinks = linksObject.ownLinks
       recommendedLinks = linksObject.recommendedLinks;
-      //console.log('RECDLINKS',recommendedLinks)
-      //console.log('LINKS',ownLinks)
+      console.log('RECDLINKS',recommendedLinks)
+      console.log('LINKS',ownLinks)
       for (key in ownLinks) {
         var userid = key.split('%')[0];
         var username = key.split('%')[1];
