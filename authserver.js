@@ -49,11 +49,13 @@ app.get('/auth/twitter/callback',
   }));
 
 app.get('/',function(req,res){
-  if(fs.readdirSync(__dirname).indexOf('fbkeys.txt') !== -1){
+  console.log(fs.readdirSync(__dirname).indexOf('fbkeys.js') );
+  if(fs.readdirSync(__dirname).indexOf('fbkeys.js') !== -1){
     global.login.loadURL('file://'+ __dirname+'/index.html');
     res.end()
+  } else {
+    res.sendFile(__dirname + '/test.html')
   }
-  res.sendFile(__dirname + '/test.html')
 })
 
 app.get('/cache',function(req,res){
