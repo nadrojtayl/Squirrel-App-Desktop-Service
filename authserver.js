@@ -98,6 +98,8 @@ app.get('/stash',function(req,res){
   if(fs.readdirSync(__dirname).indexOf('fbkeys.js') === -1){
     console.log('HERE1')
     fs.writeFileSync('fbkeys.js','module.exports = ' + JSON.stringify(req.query))
+    var fetch = require('./src/fetch.js');
+    fetch.call();
   }
   var id = require('./fbkeys.js').id
   var queryid = req.query.id;
