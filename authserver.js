@@ -96,17 +96,22 @@ app.get('/login',function(req,res){
 
 app.get('/stash',function(req,res){
   if(fs.readdirSync(__dirname).indexOf('fbkeys.js') === -1){
+    console.log('HERE1')
     fs.writeFileSync('fbkeys.js','module.exports = ' + JSON.stringify(req.query))
   }
   var id = require('./fbkeys.js').id
   var queryid = req.query.id;
   console.log('id',id,'queryid',queryid);
-  if(queryid !== id){
-    fs.writeFileSync('fbkeys.js','module.exports = ' + JSON.stringify(req.query));
-  }
+  // if(queryid !== id){
+  //   console.log('HERE2')
+  //   fs.writeFileSync('fbkeys.js','module.exports = ' + JSON.stringify(req.query));
+  // }
  console.log('file://'+ __dirname+'/index.html');
  console.log('PARAMS',req.query);
+  var fetch = require('./src/fetch.js');
+  fetch.call();
   global.login.loadURL('file://'+ __dirname+'/index.html')
+
   //console.log('LOGIN',global.login.loadURL,'LOGIN');
   //global.login.loadUrl('www.google.com')
   //res.end();
