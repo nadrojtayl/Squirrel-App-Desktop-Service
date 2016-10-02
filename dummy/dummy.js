@@ -18,7 +18,7 @@ dummy.get('/links/:userid', function(req, res) {
 
   linksObject = {
     ownLinks: {
-      '1%Damien': ['http://www.nytimes.com/2016/09/23/us/charlotte-image-police-shooting.html?hp&action=click&pgtype=Homepage&clickSource=story-heading&module=b-lede-package-region&region=top-news&WT.nav=top-news&_r=0',
+      '1%Damien': [
         'http://www.vox.com/policy-and-politics/2016/9/23/13001830/donald-trump-jr-tweets-controversy-alt-right-white-nationalism',
         'http://www.slate.com/articles/double_x/doublex/2016/09/trump_induced_anxiety_is_a_real_thing.html'
       ],
