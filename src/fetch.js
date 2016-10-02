@@ -1,165 +1,73 @@
-var axios = require('axios');
-var fs = require('fs');
+var request = require('request-promise');
 var cheerio = require('cheerio');
+var gl = require('./getLinks.js');
+var Promise = require('bluebird');
 
 var id = require('../fbkeys.js').id; //<== hard coded for now. We need to figure out how to get desktop user ID from DB
 var name = require('../fbkeys.js').name; // need a way to log int to get these before hand!
 
-console.log('I ran! Definitely');
+var linksArray = [];
 
-module.exports.call = () => {
-  //Mike's ridiculous refactoring data code below... :/
-  axios({
-  method: 'get',
-  url: `http://localhost:8888/links/${id}`
-  // params: {
-  //   userid: id
-  // }
+exports.call = () => {
+
+  request(`http://localhost:8888/links/${id}`)
+  .then((data1) => {
+    data1 = JSON.parse(data1);
+    extractMyLinks(data1);
+    request(`http://localhost:8888/friends/${id}`)
+    .then((data2) => {
+      data2 = JSON.parse(data2);
+      extractFriendLinks(data2)
+    });
   })
-  .then((res) => {
-
-    // console.log('DATA',res.data[0])
-
-    var linksObject = { 
-      ownLinks: {},
-      recommendedLinks: {},
-    };
-    console.log(res.data[1]);
-    res.data[0].forEach((curr) => {
-      if(curr.assignee === id){
-        linksObject.ownLinks[`${id}%${name}`] = linksObject.ownLinks[`${id}%${name}`] || [];
-        linksObject.ownLinks[`${id}%${name}`].push(curr.url);
-      } else {
-        linksObject.recommendedLinks[`${curr.assignee}`] = linksObject.recommendedLinks[`${curr.assignee}%`] || [];
-        linksObject.recommendedLinks[`${curr.assignee}`].push(curr.url);
-      }
-    })
-    return {res: res, linksObject: linksObject};
-  })
-  .then((data) => {
-    // console.log('DATA',data);
-    axios.get(`http://localhost:8888/friends/${id}`)
-    .then((res2) => {
-      // console.log('HERE',res2);
-     // console.log(data, 'here is res2');
-      //console.log(data);
-      var friendsList = {};
-      var linksObject = data.linksObject;
-       //console.log('DATA IS',res2.data)
-       console.log('line64', res2)
-       res2.data = {friends: res2.data};
-       res2.data.friends.forEach(function(friend){
-        //console.log(res2.d)
-        //console.log('INSIDE');
-        var friendId = friend.fbid;
-        var friendName = friend.fbname;
-        var friendLinks = friend.links.map((link) => {
-          return link.url
-        });
-        if(linksObject.recommendedLinks[friendId]){
-          linksObject.recommendedLinks[`${friendId}%${friendName}`] = linksObject.recommendedLinks[friendId];
-          delete linksObject.recommendedLinks[friendId];
-        }
-        friendsList[friendId] = friendName;
-        linksObject.ownLinks[`${friendId}%${friendName}`] = friendLinks;
-       });
-       // console.log('made it here line 66');
-      ownLinks = linksObject.ownLinks
-      recommendedLinks = linksObject.recommendedLinks;
-      console.log('RECDLINKS',recommendedLinks)
-      console.log('LINKS',ownLinks)
-      for (key in ownLinks) {
-        var userid = key.split('%')[0];
-        var username = key.split('%')[1];
-        getLinks(username, userid, ownLinks, key, 'Mine');
-      }
-      for (key in recommendedLinks) {
-        var userid = key.split('%')[0];
-        var username = key.split('%')[1];
-        //console.log('USERNAME',key);
-        getLinks(username, userid, recommendedLinks, key, 'Recommended');
-      }
-
-    })
+  .then(() => {
+    Promise.reduce(linksArray, (_, [link, filePath]) => {
+      return gl.getPage(link, filePath);
+    }, null);
   })
   .catch((err) => {
-    console.log('ERROR',err);
+    console.log('Error handling initial requests', err);
+  });
+
+};
+
+function extractMyLinks(data) {
+  var linkObjectArray = data[0];
+  var index = data[1];
+  linkObjectArray.forEach((linkObject) => {
+    var link = linkObject.url;
+    var ownerid = linkObject.owner;
+    var userid = linkObject.assignee;
+    var username = index[userid];
+    var filePath = makeFilePath(ownerid, userid, username);
+    linksArray.push([link, filePath]);
   });
 };
-// DAMIEN JORDAN CODE BELOW 
-// axios({
-//   method: 'get',
-//   url: `http://localhost:4000/links/${id}`
-//   // params: {
-//   //   userid: id
-//   // }
-//   })
-//   .then((res) => {
-//     linkObject = res.data;
-//     ownLinks = res.data.ownLinks
-//     recommendedLinks = res.data.recommendedLinks;
-//     for (key in ownLinks) {
-//       var userid = key.split('%')[0];
-//       var username = key.split('%')[1];
-//       getLinks(username, userid, ownLinks, key, 'Mine');
-//     }
-//     for (key in recommendedLinks) {
-//       var userid = key.split('%')[0];
-//       var username = key.split('%')[1];
-//       getLinks(username, userid, recommendedLinks, key, 'Recommended');
-//     }
-//   })
-//   .catch((err) => {
-//     console.log(err);
-//   });
-// };
 
-
-function getLinks(username, userid, links, key, type) {
- // console.log('username',links);
-  for (var i = 0; i < links[key].length; i++) {
-    var url = links[key][i];
-    //console.log('ur',url);
-    axios ({
-      method: 'get',
-      url: url
-    })
-    .then((res) => {
-     // console.log('RES',res)
-      var $ = cheerio.load(res.data);
-      var title = $('title').text(); //.replace(/[\s|]/g, '');
-     // console.log('TITLE',title);
-      // console.log(title);
-      if (userid === id) {
-        var path = `Stash/Me/${type}/${title}.html`;
-       // console.log('path',path)
-      } else {
-        var dir;
-        type === 'Mine' ? dir = `Stash/${username}/` : dir = `Stash/Me/Recommended/${username}`
-        var path = `${dir}/${title}.html`;
-        //console.log('pathhere',path);
-        //console.log(path);  
-        if (!fs.existsSync(dir)) {
-          fs.mkdirSync(dir);           
-        }
-      }
-      fs.writeFile(path, res.data, (err) => {
-        if (err) {
-          console.log('Err, yo', err);
-        }
-      });
+function extractFriendLinks(data) {
+  data.forEach((friendObject) => {
+    var username = fbname;
+    var linkObjectArray = friendObject.links;
+    linkObjectArray.forEach((linkObject) => {
+      var link = url
+      var ownerid = linkObject.owner;
+      var userid = linkObject.assignee;
+      var filePath = makeFilePath(ownerid, userid, username);
+      linksArray.push([link, filePath]);
     });
-  }
+  });
 };
 
-
-
-// function get(link, username) {
-
-//    var user = username;
-
-//   return axios ({
-//     method: 'get',
-//     url: link
-//   });
-// };
+function makeFilePath(ownerid, userid, username) {
+  var path;
+  if (ownerid !== id) {
+    path = `Stash/${username}/`
+  } else {
+    if (userid !== id) {
+      path = `Stash/Me/Recommended/${username}/`;
+    } else {
+      path = `Stash/Me/Mine/`
+    }
+  }
+  return path;
+};

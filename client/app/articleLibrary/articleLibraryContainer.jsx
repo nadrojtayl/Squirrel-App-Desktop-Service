@@ -6,7 +6,7 @@ var ArticleLibraryContainer = ({folderPath}) => {
 
   var filePaths = [];
   console.log('YO')
-  if(folderPath.indexOf('Recommended')!==-1){
+  if(folderPath && folderPath.indexOf('Recommended')!==-1){
     fs.readdirSync(folderPath).forEach(function(sub){
       fs.readdirSync(folderPath + '/' + sub).forEach(function(file){
         var filePath = folderPath + '/' + sub + '/' + file;
@@ -21,8 +21,6 @@ var ArticleLibraryContainer = ({folderPath}) => {
       filePaths.push(filePath);
     });
   }
-
-  console.log(filePaths);
 
  return (
     <ArticleLibraryPresentation filePaths={filePaths.filter(function(path){return path.indexOf('.DS') === -1})}/>

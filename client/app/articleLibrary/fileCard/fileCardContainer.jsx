@@ -29,9 +29,9 @@ class FileCardContainer extends React.Component {
     const BrowserWindow = remote.BrowserWindow;
 
     var win = new BrowserWindow({ width: 800, height: 600 });
-    console.log('NEW')
-    var toload = 'file://' + topleveldir+ '/' + url;
-    console.log(toload);
+    console.log('NEW howdy')
+    var toload = 'file://' + topleveldir + '/' + url + '/article.html';
+
     win.loadURL(toload);
                         
   }
