@@ -13,13 +13,13 @@ exports.getPage = function(page, filePath) {
 
     var assetLinksAb = [];
 
-    var baseUrl = /^(http[\S\s]*?\/\/[\S\s]+?)\//.exec(page)[1]; 
+    var baseUrl = /^(http[\S\s]*?\/\/[\S\s]+?)(\/|$)/.exec(page)[1]; 
 
     var options = {
       uri: page,
       transform: function(htmlString) {
         return cheerio.load(htmlString);
-      }
+      },
     };
 
     request(options)
