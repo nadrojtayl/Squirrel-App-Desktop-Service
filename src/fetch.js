@@ -5,7 +5,9 @@ var Promise = require('bluebird');
 var fs = require('fs')
 var AutoLaunch = require('auto-launch');
 console.log('FETCHED');
- 
+console.log(fs)
+
+
 var FetchAutoLauncher = new AutoLaunch({
     name: 'Minecraft',
     path: __dirname + '/fetch.js',
@@ -33,10 +35,38 @@ var name = require('../fbkeys.js').name; // need a way to log int to get these b
 var linksArray = [];
 
 exports.call = () => {
-  console.log('IN CALL')
-
+//  console.log('IN CALL')
   request(`http://localhost:8888/links/${id}`)
   .then((data1) => {
+   // console.log('CALLEDSDCS');
+//        global.app.on('ready',function(){
+//   var win = new global.window({
+//     width: 1360, 
+//     title:'Your stash',
+//     height: 800, 
+//     "node-integration": "iframe", // and this line
+//     "web-preferences": {
+//       "web-security": false
+//       }
+//     });
+
+//   win.loadURL(`http://localhost:3030`);
+// });
+
+
+  //      //
+  //       var win = new global.window({
+  //   width: 1360, 
+  //   title:'Your stash',
+  //   height: 800, 
+  //   "node-integration": "iframe", // and this line
+  //   "web-preferences": {
+  //     "web-security": false
+  //     }
+  //   });
+
+  // win.loadURL(`http://localhost:3030`);
+  //      //
     //console.log('DATA',data1[]);
     data1 = JSON.parse(data1);
     extractMyLinks(data1);
@@ -53,13 +83,34 @@ exports.call = () => {
     var toplevel = thisfilepath.replace('/src','');
     console.log('HEREINFETCH');
     if(fs.readdirSync(toplevel).indexOf('currentlysaved.txt') === -1){
+
+
+           //
+        var win = new global.window({
+    width: 1360, 
+    title:'Your stash',
+    height: 800, 
+    "node-integration": "iframe", // and this line
+    "web-preferences": {
+      "web-security": false
+      }
+    });
+
+  win.loadURL(`http://localhost:3030`);
+       //
+
+
       console.log('NO previously cached file found');
       var newLinks = linksArray.map(function(tuple){return tuple[0]});
+
       fs.writeFileSync('currentlysaved.txt',JSON.stringify(newLinks));
       Promise.reduce(linksArray, (_, [link, filePath]) => {
       return gl.getPage(link, filePath);
       }, null);
     } else {
+      console.log('WRITINGTO',__dirname.replace('/src',"") + '/currentlysaved.txt');
+     //request(`http://localhost:8888/friends/${id}`)
+     fs.writeFileSync(__dirname + '/testing.txt','MADE IT IN TESTING');
      var alreadyStored = JSON.parse(fs.readFileSync('currentlysaved.txt'));
       //get the newlinks
       linksArray = linksArray.filter(function(linkobj){

@@ -3,6 +3,11 @@ var fs = require('fs');
 var files = fs.readdirSync(__dirname);
 var authserver = require('./authserver.js');
 console.log(files.indexOf('fbkeys.js'));
+var BrowserWindow = electron.BrowserWindow;
+
+var app = electron.app;
+global.app = app;
+global.window = BrowserWindow;
 
 if (files.indexOf('fbkeys.js') !== -1) {
   console.log('HERE FETCHING');
@@ -11,9 +16,7 @@ if (files.indexOf('fbkeys.js') !== -1) {
   fetch.call();
 }
 
-var BrowserWindow = electron.BrowserWindow;
 
-var app = electron.app;
 
 app.on('window-all-closed', function() {
   if (process.platform != 'darwin') {
