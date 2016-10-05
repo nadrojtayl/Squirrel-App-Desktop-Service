@@ -2,14 +2,18 @@ var webpack = require('webpack');
 var path = require('path');
 var nodeModulesPath = path.resolve(__dirname, 'node_modules');
 
-var buildPath = path.resolve(__dirname, 'public');
-var mainPath = path.resolve(__dirname, 'client', 'app', 'appContainer.jsx');
+var BUILD_DIR = path.resolve(__dirname, 'public');
+var APP_DIR = path.resolve(__dirname, 'client');
 
 var config = {
-  entry: mainPath,
+  entry: APP_DIR + '/app/appContainer.jsx',
   output: {
-    path: buildPath,
+    path: BUILD_DIR,
     filename: 'bundle.js',
+  },
+  node: {
+    __dirname: false,
+    __filename: false
   },
   devtool: 'source-map',
   module: {
@@ -17,8 +21,9 @@ var config = {
       {
         test : /\.jsx?/,
         loader : 'babel',
+        include : APP_DIR,
         query: {
-          presets: ['react'],
+          presets: ['react', 'es2015'],
         },
         exclude: [nodeModulesPath]
       },

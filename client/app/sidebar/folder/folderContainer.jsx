@@ -1,5 +1,4 @@
 import React from 'react'
-import FolderPresentation from './folderPresentation.jsx'
 
 var FolderContainer = (props) => (
 

@@ -26,7 +26,7 @@ var config = {
         include : APP_DIR,
         loader : 'babel',
         query: {
-          presets: ['react'],
+          presets: ['react', 'es2015'],
         }
       },
       { test: /\.css$/, 

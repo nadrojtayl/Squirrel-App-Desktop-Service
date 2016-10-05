@@ -1,9 +1,13 @@
 require('../../scss/main.scss');
+// var remote = require('electron').remote;
+// var fs = remote.require('fs');
+
+
 
 import React from 'react';
 import {render} from 'react-dom'
-import fs from 'fs';
 import path from 'path';
+// import fs from 'fs';
 import AppPresentation from './appPresentation.jsx';
 
 class AppContainer extends React.Component {
@@ -26,7 +30,7 @@ class AppContainer extends React.Component {
 };
 
 var getFolders = function() {
-  var dirs = fs.readdirSync('Stash').filter((dir) => {
+  var dirs = fs.readdirSync(__dirname + '/Stash').filter((dir) => {
     if (dir === '.DS_Store' || dir === 'Me') {
       return false;
     } else {
@@ -35,14 +39,14 @@ var getFolders = function() {
   });
   console.log('DIRS',dirs);
   dirs = dirs.map((dir) => {
-    return 'Stash/' + dir;
+    return __dirname + '/Stash/' + dir;
   });
 
-  dirs.push('Stash/Me/Mine');
-  fs.readdirSync('Stash/Me/Recommended').forEach(function(path){
-    dirs.push('Stash/Me/Recommended/' + path)
+  dirs.push(__dirname + '/Stash/Me/Mine');
+  fs.readdirSync(__dirname + '/Stash/Me/Recommended').forEach(function(path){
+    dirs.push(__dirname + '/Stash/Me/Recommended/' + path)
   })
-  dirs.push('Stash/Me/Recommended');
+  dirs.push(__dirname + '/Stash/Me/Recommended');
 
   return dirs;
 };
