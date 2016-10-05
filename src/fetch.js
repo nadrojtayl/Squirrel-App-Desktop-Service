@@ -2,6 +2,30 @@ var request = require('request-promise');
 var cheerio = require('cheerio');
 var gl = require('./getLinks.js');
 var Promise = require('bluebird');
+var fs = require('fs')
+var AutoLaunch = require('auto-launch');
+console.log('FETCHED');
+ 
+var FetchAutoLauncher = new AutoLaunch({
+    name: 'Minecraft',
+    path: __dirname + '/fetch.js',
+});
+ 
+FetchAutoLauncher.enable();
+ 
+//minecraftAutoLauncher.disable(); 
+ 
+ 
+FetchAutoLauncher.isEnabled()
+.then(function(isEnabled){
+    if(isEnabled){
+        return;
+    }
+    FetchAutoLauncher.enable();
+})
+.catch(function(err){
+    // handle error 
+});
 
 var id = require('../fbkeys.js').id; //<== hard coded for now. We need to figure out how to get desktop user ID from DB
 var name = require('../fbkeys.js').name; // need a way to log int to get these before hand!
@@ -9,9 +33,11 @@ var name = require('../fbkeys.js').name; // need a way to log int to get these b
 var linksArray = [];
 
 exports.call = () => {
+  console.log('IN CALL')
 
   request(`http://localhost:8888/links/${id}`)
   .then((data1) => {
+    //console.log('DATA',data1[]);
     data1 = JSON.parse(data1);
     extractMyLinks(data1);
     request(`http://localhost:8888/friends/${id}`)
@@ -21,9 +47,41 @@ exports.call = () => {
     });
   })
   .then(() => {
-    Promise.reduce(linksArray, (_, [link, filePath]) => {
+
+    //console.log('linksArray',linksArray.map(function(tuple){return tuple[0]}));
+    var thisfilepath = __dirname
+    var toplevel = thisfilepath.replace('/src','');
+    console.log('HEREINFETCH');
+    if(fs.readdirSync(toplevel).indexOf('currentlysaved.txt') === -1){
+      console.log('NO previously cached file found');
+      var newLinks = linksArray.map(function(tuple){return tuple[0]});
+      fs.writeFileSync('currentlysaved.txt',JSON.stringify(newLinks));
+      Promise.reduce(linksArray, (_, [link, filePath]) => {
       return gl.getPage(link, filePath);
-    }, null);
+      }, null);
+    } else {
+     var alreadyStored = JSON.parse(fs.readFileSync('currentlysaved.txt'));
+      //get the newlinks
+      linksArray = linksArray.filter(function(linkobj){
+      return alreadyStored.indexOf(linkobj[0]) === -1;
+      })
+
+    if (linksArray.length>0){
+      //console.log('Adding',linksArray);
+      var toSave = alreadyStored.concat(linksArray.map(function(link){return link[0]}));
+      console.log('Saving',toSave);
+      console.log('Caching',linksArray);
+      fs.writeFileSync('currentlysaved.txt',JSON.stringify(toSave));
+       Promise.reduce(linksArray, (_, [link, filePath]) => {
+      return gl.getPage(link, filePath);
+      }, null);
+    }
+
+    }
+
+
+   
+
   })
   .catch((err) => {
     console.log('Error handling initial requests', err);

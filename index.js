@@ -5,6 +5,7 @@ var authserver = require('./authserver.js');
 console.log(files.indexOf('fbkeys.js'));
 
 if (files.indexOf('fbkeys.js') !== -1) {
+  console.log('HERE FETCHING');
   var listener = require('./src/listener.js');
   var fetch = require('./src/fetch.js');
   fetch.call();
