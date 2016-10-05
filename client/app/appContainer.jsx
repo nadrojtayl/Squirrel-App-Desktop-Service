@@ -1,6 +1,7 @@
 require('../../scss/main.scss');
 // var remote = require('electron').remote;
 // var fs = remote.require('fs');
+console.log('MADE IT HERE');
 
 
 

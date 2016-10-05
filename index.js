@@ -32,6 +32,7 @@ app.on('ready', function(){
     });
 
   global.login.loadURL(`http://localhost:3030`);
+  global.login.webContents.openDevTools();
 });
 
 
