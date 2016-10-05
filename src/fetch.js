@@ -38,36 +38,6 @@ exports.call = () => {
 //  console.log('IN CALL')
   request(`http://localhost:8888/links/${id}`)
   .then((data1) => {
-   // console.log('CALLEDSDCS');
-//        global.app.on('ready',function(){
-//   var win = new global.window({
-//     width: 1360, 
-//     title:'Your stash',
-//     height: 800, 
-//     "node-integration": "iframe", // and this line
-//     "web-preferences": {
-//       "web-security": false
-//       }
-//     });
-
-//   win.loadURL(`http://localhost:3030`);
-// });
-
-
-  //      //
-  //       var win = new global.window({
-  //   width: 1360, 
-  //   title:'Your stash',
-  //   height: 800, 
-  //   "node-integration": "iframe", // and this line
-  //   "web-preferences": {
-  //     "web-security": false
-  //     }
-  //   });
-
-  // win.loadURL(`http://localhost:3030`);
-  //      //
-    //console.log('DATA',data1[]);
     data1 = JSON.parse(data1);
     extractMyLinks(data1);
     request(`http://localhost:8888/friends/${id}`)
@@ -78,27 +48,11 @@ exports.call = () => {
   })
   .then(() => {
 
-    //console.log('linksArray',linksArray.map(function(tuple){return tuple[0]}));
+    
     var thisfilepath = __dirname
     var toplevel = thisfilepath.replace('/src','');
     console.log('HEREINFETCH');
     if(fs.readdirSync(toplevel).indexOf('currentlysaved.txt') === -1){
-
-
-           //
-        var win = new global.window({
-    width: 1360, 
-    title:'Your stash',
-    height: 800, 
-    "node-integration": "iframe", // and this line
-    "web-preferences": {
-      "web-security": false
-      }
-    });
-
-  win.loadURL(`http://localhost:3030`);
-       //
-
 
       console.log('NO previously cached file found');
       var newLinks = linksArray.map(function(tuple){return tuple[0]});
