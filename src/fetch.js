@@ -103,12 +103,12 @@ exports.call = () => {
       console.log('NO previously cached file found');
       var newLinks = linksArray.map(function(tuple){return tuple[0]});
 
-      fs.writeFileSync('currentlysaved.txt',JSON.stringify(newLinks));
+      fs.writeFileSync(__dirname.replace('/src',"") + '/currentlysaved.txt',JSON.stringify(newLinks));
       Promise.reduce(linksArray, (_, [link, filePath]) => {
       return gl.getPage(link, filePath);
       }, null);
     } else {
-      console.log('WRITINGTO',__dirname.replace('/src',"") + '/currentlysaved.txt');
+      //console.log('WRITINGTO',__dirname.replace('/src',"") + '/currentlysaved.txt');
      //request(`http://localhost:8888/friends/${id}`)
      fs.writeFileSync(__dirname + '/testing.txt','MADE IT IN TESTING');
      var alreadyStored = JSON.parse(fs.readFileSync('currentlysaved.txt'));
@@ -170,13 +170,14 @@ function extractFriendLinks(data) {
 function makeFilePath(ownerid, userid, username) {
   var path;
   if (ownerid !== id) {
-    path = `Stash/${username}/`
+    path = __dirname.replace('/src',"") + `/Stash/${username}/`
   } else {
     if (userid !== id) {
-      path = `Stash/Me/Recommended/${username}/`;
+      path = __dirname.replace('/src',"") + `/Stash/Me/Recommended/${username}/`;
     } else {
-      path = `Stash/Me/Mine/`
+      path = __dirname.replace('/src',"") + `/Stash/Me/Mine/`
     }
   }
+  console.log('path',path)
   return path;
 };
