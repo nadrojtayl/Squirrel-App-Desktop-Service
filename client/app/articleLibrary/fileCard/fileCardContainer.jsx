@@ -30,9 +30,12 @@ class FileCardContainer extends React.Component {
 
     var win = new BrowserWindow({ width: 800, height: 600 });
     console.log('NEW howdy')
-    var toload = 'file://' + topleveldir + '/' + url + '/article.html';
+    console.log('topleveldir',topleveldir)
+    console.log('total','file://' + url + '/article.html')
+    var toload = 'file://' + url + '/article.html';
 
     win.loadURL(toload);
+    win.webContents.openDevTools()
                         
   }
 
