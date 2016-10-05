@@ -31,16 +31,18 @@ class AppContainer extends React.Component {
 };
 
 var getFolders = function() {
-  var dirs = fs.readdirSync(__dirname + '/Stash').filter((dir) => {
-    if (dir === '.DS_Store' || dir === 'Me') {
+  var dirs = fs.readdirSync(__dirname + '/Stash');
+  console.log('DIRS',dirs);
+  dirs = dirs.map((dir) => {
+    return __dirname + '/Stash/' + dir;
+  });
+
+  dirs = dirs.filter((dir) => {
+    if (/[\S\s]*\/Me$/.test(dir)) {
       return false;
     } else {
       return true;
     }
-  });
-  console.log('DIRS',dirs);
-  dirs = dirs.map((dir) => {
-    return __dirname + '/Stash/' + dir;
   });
 
   dirs.push(__dirname + '/Stash/Me/Mine');
@@ -48,6 +50,14 @@ var getFolders = function() {
     dirs.push(__dirname + '/Stash/Me/Recommended/' + path)
   })
   dirs.push(__dirname + '/Stash/Me/Recommended');
+
+  dirs = dirs.filter((dir) => {
+    if (/\.DS_Store/.test(dir)) {
+      return false;
+    } else {
+      return true;
+    }
+  })
 
   return dirs;
 };
