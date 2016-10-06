@@ -45,17 +45,22 @@ class FileCardContainer extends React.Component {
     // console.log('this.props.path', this.props.path);
     // console.log(title);
     try {
-      var image = `Stash/Me/Mine/${title}/images/${fs.readdirSync(imageFolder)[10]}`;
-      console.log(image);
+      var image = fs.readdirSync(imageFolder)[5];
+      if (!image) {
+        imagePath = 'client/assets/default.png';
+      } else {
+        imagePath = `Stash/Me/Mine/${title}/images/${image}`;
+      }
+
     } catch (err) {
       console.log(err);
-      var image = 'client/assets/default.png';
+      var imagePath = 'client/assets/default.png';
     }
     // console.log('dirname', __dirname);
     // console.log(image);
     return (
       <div className = "articleBox" onClick={() => this.expand.bind(this)(this.props.path)} draggable="true" onDragStart={function(event){drag(event)}}>
-        <img className="articleImage" src={image}/>
+        <img className="articleImage" src={imagePath}/>
         <div className="articleTitle">
           <h3> {title}</h3>
         </div>
