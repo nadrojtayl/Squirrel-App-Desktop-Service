@@ -18,11 +18,17 @@ if (files.indexOf('fbkeys.js') !== -1) {
 
 
 
-app.on('window-all-closed', function() {
-  if (process.platform != 'darwin') {
-    app.quit();
-  }
+// app.on('window-all-closed', function() {
+//   if (process.platform != 'darwin') {
+//     app.quit();
+//   }
+// });
+app.on('window-all-closed', app.quit);
+app.on('before-quit', () => {
+    global.login.removeAllListeners('close');
+    global.login.close();
 });
+
 
 app.on('ready', function(){
    global.login= new BrowserWindow({
