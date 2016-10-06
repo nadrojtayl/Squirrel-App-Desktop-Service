@@ -1,98 +1,63 @@
 <!DOCTYPE html>
 <html>
   <head>
-<!--     <script type="text/javascript" src="node_modules/materialize/js/materialize.min.js"></script> -->
-  	<div id = "topbar">
-    	<h3>Here's your stash - enjoy these articles for the winter!</h3>
-    </div>
- <!--    <script src="scripts/hammer.min.js"></script>
-     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link type="text/css" rel="stylesheet" href="node_modules/materialize/css/materialize.min.css"  media="screen,projection"/> -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="./main.css">
+    <link rel="stylesheet" type="text/css" href="scss/main.css">
     <script src = "node_modules/jquery/dist/jquery.js"></script>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons"/>
+    <link rel="stylesheet" type="text/css" href="./styles/materialize.css">
     <link rel="stylesheet" type="text/css" href="node_modules/easyui/dist/easyui.js">
     <link rel="stylesheet" type="text/css" href="node_modules/jquery-easyui/themes/default/easyui.css">
     <link rel="stylesheet" type="text/css" href="node_modules/jquery-easyui/themes/icon.css">
     <link rel="stylesheet" type="text/css" href="node_modules/jquery-easyui/demo/demo.css">
     <script type="text/javascript" src="node_modules/jquery-easyui/jquery.min.js"></script>
     <script type="text/javascript" src="node_modules/jquery-easyui/jquery.easyui.min.js"></script>
-        <script>
+    <script>
       var remote = require('electron').remote;
       var fs = remote.require('fs');
-   </script>
-
+    </script>
   </head>
   <body>
-    <!-- <div class="easyui-panel" style="position:relative;overflow:hidden;width:500px;height:300px">
-      <div class="easyui-draggable" data-options="onDrag:onDrag" style="width:100px;height:100px;background:#fafafa;border:1px solid #ccc;">
-      </div>
-
-
-      <div class="easyui-draggable" data-options="onDrag:onDrag" style="width:100px;height:100px;background:#fafafa;border:1px solid #ccc;">
-        <img width="30%" src="client/assets/Folder-icon.png" onDrop='function(event){drop(event)}}' onDragOver='function(event){allowDrop(event)}'/>
-        <p>{props.folder.replace('Stash/',"")}</p> 
-      </div>
-      <div class="easyui-draggable" data-options="onDrag:onDrag" style="width:100px;height:100px;background:#fafafa;border:1px solid #ccc;">
-        <img width="30%" src="client/assets/Folder-icon.png" onDrop='function(event){drop(event)}}' onDragOver='function(event){allowDrop(event)}'/>
-        <p>{props.folder.replace('Stash/',"")}</p> 
-      </div>
-
-    </div> -->
+    <div id = topbar>
+      <img class="logo" src="client/assets/flying-squirrel.png">
+      <button class="logoutBtn">Logout</button>
+    </div>
+    <div>
+    <br />
+      <form action = "http://localhost:3030/cache">
+        <label>Stash and article!</label>
+        <input type ="text" name="url"></input>
+        <button className="stashBtn" type="submit">Stash</button>
+      </form>
+    </div>
     <script>
-  function allowDrop(ev) {
-      ev.preventDefault();
-  }
-
-  function drag(ev) {
-      ev.dataTransfer.setData("text", ev.target.id);
-  }
-
-  function drop(ev) {
-      ev.preventDefault();
-      var data = ev.dataTransfer.getData("text");
-      console.log(data);
-      //ev.target.appendChild(document.getElementById(data));
-  }
-  </script>
+      function allowDrop(ev) {
+        ev.preventDefault();
+      };
+      function drag(ev) {
+        ev.dataTransfer.setData('text', ev.target.id);
+      };
+      function drop(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData('text');
+      };
+    </script>
     <script>
     function isInternet(){
       $.ajax({url:'http://www.google.com',method:'GET',success:function(){console.log('success');window.location.href = 'http://localhost:3030/login'},error:function(){alert('You need to be connected to the internet to login with a new FB account')}})
     }
     </script>
-    <button onclick="isInternet()">Login with different fb account</button>
     <div id="app"> <!-- <===== entry point for REACT ! -->
     </div>
     <script src="node_modules/react/dist/react.js"></script>
     <script src="node_modules/react-dom/dist/react-dom.js"></script>
-    <script>
-      const topleveldir = __dirname;
-        //const remote = require('electron').remote;
-    </script>
-      <script>
-    function onDrag(e){
-      var d = e.data;
-      if (d.left < 0){d.left = 0}
-      if (d.top < 0){d.top = 0}
-      if (d.left + $(d.target).outerWidth() > $(d.parent).width()){
-        d.left = $(d.parent).width() - $(d.target).outerWidth();
-      }
-      if (d.top + $(d.target).outerHeight() > $(d.parent).height()){
-        d.top = $(d.parent).height() - $(d.target).outerHeight();
-      }
-    }
   </script>
-  <script src="public/bundle.js" type="text/javascript"></script>
+  <!-- <script src="public/bundle.js" type="text/javascript"></script> -->
   <div>
-    <form action = "http://localhost:3030/cache">
-      <label>Type in a URL to add to Me/Mine</label>
-      <input type ="text" name="url"></input>
-      <button type="submit">Add</button>
-    </form>
   </div>
   <button onclick = "console.log(document.getElementById('frame').src)">
   </button>
-    <!-- <script src="http://localhost:8080/webpack-dev-server.js"></script> -->
-    <!-- <script src="http://localhost:8080/built/bundle.js"></script> -->
+    <script src="http://localhost:8080/webpack-dev-server.js"></script>
+    <script src="http://localhost:8080/built/bundle.js"></script>
   </body>
 </html>
