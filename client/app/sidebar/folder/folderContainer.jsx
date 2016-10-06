@@ -1,14 +1,18 @@
 import React from 'react'
 
-var FolderContainer = (props) => {
+const FolderContainer = (props) => {
+
+  const title = props.index === 0 ? 'your saved stash' : 'with love from friends';
 
 	var regex = /[\S\s]*\/([\S\s]*)$/;
 
-  return (<div  className="easyui-draggable" style={{width:'100px',height:'100px'}} data-options="onDrag:onDrag" onClick={() => (props.loadFolder(props.folder))}>
-	    <img width="30%" src="client/assets/Folder-icon.png" onDrop={function(event){drop(event)}} onDragOver={function(event){allowDrop(event)}}/>
-	    <p width="30%">{regex.exec(props.folder)[1]}</p> 
-	    </div>
-	)
+  return (
+    <div  className="easyui-draggable folder" data-options="onDrag:onDrag" onClick={() => (props.loadFolder(props.folder))}>
+  	  <h4 onDrop={function(event){ drop(event); }} onDragOver={function(event) { allowDrop(event); }}> {title} </h4>
+    </div>
+  );
 };
 
 export default FolderContainer;
+
+// <p width="30%">{regex.exec(props.folder)[1]}</p> 

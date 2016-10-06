@@ -1,14 +1,8 @@
 require('../../scss/main.scss');
-// var remote = require('electron').remote;
-// var fs = remote.require('fs');
-console.log('MADE IT HERE');
-
-
 
 import React from 'react';
 import {render} from 'react-dom'
 import path from 'path';
-// import fs from 'fs';
 import AppPresentation from './appPresentation.jsx';
 
 class AppContainer extends React.Component {
@@ -32,7 +26,6 @@ class AppContainer extends React.Component {
 
 var getFolders = function() {
   var dirs = fs.readdirSync(__dirname + '/Stash');
-  console.log('DIRS',dirs);
   dirs = dirs.map((dir) => {
     return __dirname + '/Stash/' + dir;
   });

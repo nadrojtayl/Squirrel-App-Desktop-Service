@@ -9,7 +9,7 @@ var ArticleLibraryPresentation = ({filePaths}) => {
   });
 
   return (
-    <div className = "easyui-panel" style={{width:'500px',height:'600px',position:'relative'}}>
+    <div className = "easyui-panel articleContainer" style={{width:'500px',height:'600px',position:'relative'}}>
       {fileCards}
     </div>
   );
