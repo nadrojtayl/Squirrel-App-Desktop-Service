@@ -1,1 +1,0 @@
-module.exports = {"name":"1234","id":"yolo"}

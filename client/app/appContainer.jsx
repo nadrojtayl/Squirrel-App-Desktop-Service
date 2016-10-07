@@ -48,7 +48,7 @@ class AppContainer extends React.Component {
 
   render() {
     return (
-      <div className="">
+      <div style={{height: '100%'}} className="">
         <AppPresentation folders={this.getFolders()} loadFolder={this.loadFolder.bind(this)} folderPath={this.state.currentFolder}/>
       </div>
     )

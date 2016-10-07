@@ -6,10 +6,10 @@ import ArticleLibraryContainer from './articleLibrary/articleLibraryContainer.js
 const AppPresentation = (props) => {
 
   return (
-    <div className = ''>
-  	  <div className = ''>
-        <SidebarContainer className = '' folders={props.folders} loadFolder={props.loadFolder}/>
-        <ArticleLibraryContainer className = '' folderPath={props.folderPath}/>
+    <div style={{height: '100%'}} className=''>
+  	  <div style={{display: 'flex', height: '100%'}} className=''>
+        <SidebarContainer className='' folders={props.folders} loadFolder={props.loadFolder}/>
+        <ArticleLibraryContainer className ='' folderPath={props.folderPath}/>
   	  </div>
     </div>
   );
