@@ -38,6 +38,7 @@ exports.call = () => {
 //  console.log('IN CALL')
   request(`http://localhost:8888/links/${id}`)
   .then((data1) => {
+    console.log(data1, 'what is in data1');
     data1 = JSON.parse(data1);
     extractMyLinks(data1);
     request(`http://localhost:8888/friends/${id}`)
@@ -82,10 +83,7 @@ exports.call = () => {
       }, null);
     }
 
-    }
-
-
-   
+    }  
 
   })
   .catch((err) => {
@@ -109,10 +107,11 @@ function extractMyLinks(data) {
 
 function extractFriendLinks(data) {
   data.forEach((friendObject) => {
-    var username = fbname;
+    console.log(friendObject, 'friendObject');
+    var username = friendObject.fbname; //<==== WHATS HERE
     var linkObjectArray = friendObject.links;
     linkObjectArray.forEach((linkObject) => {
-      var link = url
+      var link = linkObject.url
       var ownerid = linkObject.owner;
       var userid = linkObject.assignee;
       var filePath = makeFilePath(ownerid, userid, username);

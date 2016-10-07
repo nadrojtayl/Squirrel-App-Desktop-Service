@@ -8,7 +8,7 @@ const FolderContainer = (props) => {
 
   return (
     <div  className="easyui-draggable folder" data-options="onDrag:onDrag" onClick={() => (props.loadFolder(props.folder))}>
-  	  <h4 onDrop={function(event){ drop(event); }} onDragOver={function(event) { allowDrop(event); }}> {title} </h4>
+  	  <p style={{fontSize: '1.1rem'}}onDrop={function(event){ drop(event); }} onDragOver={function(event) { allowDrop(event); }}> {title} </p>
     </div>
   );
 };

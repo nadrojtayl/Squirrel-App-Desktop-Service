@@ -4,6 +4,7 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <link rel="stylesheet" type="text/css" href="scss/main.css">
     <script src = "node_modules/jquery/dist/jquery.js"></script>
+    <link rel="stylesheet" type="text/css" href="./materialize.css">
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons"/>
     <link rel="stylesheet" type="text/css" href="./styles/materialize.css">
     <link rel="stylesheet" type="text/css" href="node_modules/easyui/dist/easyui.js">
@@ -18,18 +19,18 @@
     </script>
   </head>
   <body>
-    <div id = topbar>
+    <div class="z-depth-3" id = topbar>
       <img class="logo" src="client/assets/flying-squirrel.png">
-      <button class="logoutBtn">Logout</button>
+      <button href='#/' class="logoutBtn">Logout</button>
     </div>
-    <div>
+    <!-- <div>
     <br />
       <form action = "http://localhost:3030/cache">
         <label>Stash an article!</label>
         <input type ="text" name="url"></input>
         <button className="stashBtn" type="submit">Stash</button>
       </form>
-    </div>
+    </div> -->
     <script>
       function allowDrop(ev) {
         ev.preventDefault();
@@ -43,9 +44,9 @@
       };
     </script>
     <script>
-    function isInternet(){
-      $.ajax({url:'http://www.google.com',method:'GET',success:function(){console.log('success');window.location.href = 'http://localhost:3030/login'},error:function(){alert('You need to be connected to the internet to login with a new FB account')}})
-    }
+    // function isInternet(){
+    //   $.ajax({url:'http://www.google.com',method:'GET',success:function(){console.log('success');window.location.href = 'http://localhost:3030/login'},error:function(){alert('You need to be connected to the internet to login with a new FB account')}})
+    // }
     </script>
     <div id="app"> <!-- <===== entry point for REACT ! -->
     </div>
