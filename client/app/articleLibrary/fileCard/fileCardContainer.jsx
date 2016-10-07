@@ -40,6 +40,7 @@ class FileCardContainer extends React.Component {
     var regexFinal = /[^\/]+$/
     var regexAfterApp = /app.*app\/([\s\S]+)$/
     var title = regexFinal.exec(this.props.path)[0];
+    console.log(this.props.path, 'propsprops')
     var imageFolder = __dirname + '/' + regexAfterApp.exec(this.props.path)[1] + '/images/';
     console.log('imageFolder', imageFolder);
     // console.log('this.props.path', this.props.path);

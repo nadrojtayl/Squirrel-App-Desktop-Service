@@ -18,35 +18,35 @@ var app = express();
 app.use(express.static('node_modules'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(session({ 
-  secret: 'keyboard squirrel',
-  resave: true,
-  saveUninitialized: true,
-  // cookie: { secure: true }
-}));
+// app.use(session({ 
+//   secret: 'keyboard squirrel',
+//   resave: true,
+//   saveUninitialized: true,
+//   // cookie: { secure: true }
+// }));
 
-app.get('/auth/facebook', passport.authenticate('facebook'));
+// app.get('/auth/facebook', passport.authenticate('facebook'));
 
-//check to see req session?
-app.get('/checkAuth', function(req, res){
-  console.log('hello robert', req.user, 'yoloo')
-  res.send(req.user);
-});
+// //check to see req session?
+// app.get('/checkAuth', function(req, res){
+//   console.log('hello robert', req.user, 'yoloo')
+//   res.send(req.user);
+// });
 
-app.get('/auth/facebook/callback',
-  passport.authenticate('facebook', {
-    successRedirect: 'http://localhost:3010/#/',
-    failureRedirect: 'http://localhost:3010/'
-  }));
+// app.get('/auth/facebook/callback',
+//   passport.authenticate('facebook', {
+//     successRedirect: 'http://localhost:3010/#/',
+//     failureRedirect: 'http://localhost:3010/'
+//   }));
 
 
-app.get('/auth/twitter', passport.authenticate('twitter'));
+// app.get('/auth/twitter', passport.authenticate('twitter'));
 
-app.get('/auth/twitter/callback',
-  passport.authenticate('twitter', {
-    successRedirect: '/',
-    failureRedirect: '/login'
-  }));
+// app.get('/auth/twitter/callback',
+//   passport.authenticate('twitter', {
+//     successRedirect: '/',
+//     failureRedirect: '/login'
+//   }));
 
 app.get('/',function(req,res){
   //console.log(fs.readdirSync(__dirname).indexOf('fbkeys.js') );
@@ -54,7 +54,7 @@ app.get('/',function(req,res){
     global.login.loadURL('file://'+ __dirname+'/index.html');
     res.end()
   } else {
-    res.sendFile(__dirname + '/test.html')
+    global.login.loadURL('file://'+ __dirname+'/index.html')
   }
 })
 
@@ -100,7 +100,8 @@ app.get('/stash',function(req,res){
     fs.writeFileSync(__dirname + '/fbkeys.js','module.exports = ' + JSON.stringify(req.query))
     var fetch = require('./src/fetch.js');
     fetch.call();
-    global.login.loadURL('file://'+ __dirname+'/index.html')
+    // global.login.loadURL('file://'+ __dirname+'/index.html') <==== YOU DID THIS FIRST MIKE
+    res.send(200);
   }
   var id = require('./fbkeys.js').id
   var queryid = req.query.id;
@@ -113,13 +114,13 @@ app.get('/stash',function(req,res){
  console.log('PARAMS',req.query);
   var fetch = require('./src/fetch.js');
   fetch.call();
-  global.login.loadURL('file://'+ __dirname+'/index.html')
+  // global.login.loadURL('file://'+ __dirname+'/index.html') <===== YOU DID THIS TOO MIKE
 
   //console.log('LOGIN',global.login.loadURL,'LOGIN');
   //global.login.loadUrl('www.google.com')
   //res.end();
  // res.sendFile(__dirname + '/index.html');
- res.end();
+ res.send(200); //<=== changed from res.end();
 })
 
 app.listen('3030', function() {
@@ -128,94 +129,94 @@ app.listen('3030', function() {
 
 
 
-//options for request-promise http request
-var options = function(id, name, avatar){
-  return {
-    method: 'POST',
-    uri: 'http://localhost:8888/login/' + id,
-    body: {
-        userID: id,
-        name: name || undefined,
-        avatar: avatar || undefined,
-    },
-    json: true // Automatically stringifies the body to JSON
-  }
-}
-//profile fields to request from facebook
-var FBprofileFields = [
-    'id',
-    'displayName',
-    'first_name',
-    'last_name',
-    'email',
-    'bio',
-    'work',
-    'education',
-    'location',
-    'birthday',
-    'cover',
-    'picture.type(large)',
-    'gender',
-    'interested_in',
-    'link', // FB timeline 
-    'website',
-    'is_verified'
-  ];
+// //options for request-promise http request
+// var options = function(id, name, avatar){
+//   return {
+//     method: 'POST',
+//     uri: 'http://localhost:8888/login/' + id,
+//     body: {
+//         userID: id,
+//         name: name || undefined,
+//         avatar: avatar || undefined,
+//     },
+//     json: true // Automatically stringifies the body to JSON
+//   }
+// }
+// //profile fields to request from facebook
+// var FBprofileFields = [
+//     'id',
+//     'displayName',
+//     'first_name',
+//     'last_name',
+//     'email',
+//     'bio',
+//     'work',
+//     'education',
+//     'location',
+//     'birthday',
+//     'cover',
+//     'picture.type(large)',
+//     'gender',
+//     'interested_in',
+//     'link', // FB timeline 
+//     'website',
+//     'is_verified'
+//   ];
 
-//passport configuration
-function passportConfig(passport){
-  passport.use(new FacebookStrategy({
-    clientID: APIKeys.keys.facebook.key,
-    clientSecret: APIKeys.keys.facebook.secret,
-    callbackURL: 'http://localhost:3010/auth/facebook/callback',
-    profileFields: FBprofileFields,
-  },
-    function(accessToken, refreshToken, profile, done) {
-      console.log(profile.photos[0].value, 'what is this thing?');
-      var apiFields = options(profile.id, profile.displayName, profile.photos[0].value)
+// //passport configuration
+// function passportConfig(passport){
+//   passport.use(new FacebookStrategy({
+//     clientID: APIKeys.keys.facebook.key,
+//     clientSecret: APIKeys.keys.facebook.secret,
+//     callbackURL: 'http://localhost:3010/auth/facebook/callback',
+//     profileFields: FBprofileFields,
+//   },
+//     function(accessToken, refreshToken, profile, done) {
+//       console.log(profile.photos[0].value, 'what is this thing?');
+//       var apiFields = options(profile.id, profile.displayName, profile.photos[0].value)
 
-      rp(apiFields) //<===== server-side http request
-      .then(function (user) {
-          console.log(user, 'IS THIS THE DATA');
-          done(null, user);
-      })
-      .catch(function (err) {
-        console.log(err,'could not reach SquirrelDBService');
-      });
-    }
-  ));
+//       rp(apiFields) //<===== server-side http request
+//       .then(function (user) {
+//           console.log(user, 'IS THIS THE DATA');
+//           done(null, user);
+//       })
+//       .catch(function (err) {
+//         console.log(err,'could not reach SquirrelDBService');
+//       });
+//     }
+//   ));
 
-  passport.use(new TwitterStrategy({
-    consumerKey: APIKeys.keys.twitter.key,
-    consumerSecret: APIKeys.keys.twitter.secret,
-    callbackURL: 'http://localhost:3010/auth/twitter/callback'
-  },
-  function(token, tokenSecret, profile, done) {
-    console.log(profile, 'twitter profile?');
-    User.findOrCreate({}, function(err, user) {
-      if (err) {
-        return done(err);
-      }
-      done(null, user);
-    });
-  }));
+//   passport.use(new TwitterStrategy({
+//     consumerKey: APIKeys.keys.twitter.key,
+//     consumerSecret: APIKeys.keys.twitter.secret,
+//     callbackURL: 'http://localhost:3010/auth/twitter/callback'
+//   },
+//   function(token, tokenSecret, profile, done) {
+//     console.log(profile, 'twitter profile?');
+//     User.findOrCreate({}, function(err, user) {
+//       if (err) {
+//         return done(err);
+//       }
+//       done(null, user);
+//     });
+//   }));
 
-  //user ID is serialized to the session, when a request of the same ID is received it will restore the session
-  passport.serializeUser(function(user, done) {
-    done(null, user.fbid);
-  });
-  //used to check if user session is actuallly a verified user in database! 
-  passport.deserializeUser(function(id, done) {
-    var apiFields = options(id);
+//   //user ID is serialized to the session, when a request of the same ID is received it will restore the session
+//   passport.serializeUser(function(user, done) {
+//     done(null, user.fbid);
+//   });
+//   //used to check if user session is actuallly a verified user in database! 
+//   passport.deserializeUser(function(id, done) {
+//     var apiFields = options(id);
 
-    rp(apiFields)
-      .then(function(user){
-        console.log('passport.deserilizeUser', user);
-        done(null, user);
-      })
-      .catch(function(err){
-        console.log('passport.deserilizeUser 2', err);
-      })
+//     rp(apiFields)
+//       .then(function(user){
+//         console.log('passport.deserilizeUser', user);
+//         done(null, user);
+//       })
+//       .catch(function(err){
+//         console.log('passport.deserilizeUser 2', err);
+//       })
 
-  });
-};
+//   });
+// };

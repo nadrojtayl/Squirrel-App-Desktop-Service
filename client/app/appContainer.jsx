@@ -15,44 +15,47 @@ class AppContainer extends React.Component {
     this.setState({currentFolder: folderPath});
   }
 
+  getFolders() {
+    var dirs = fs.readdirSync(__dirname + '/Stash');
+    dirs = dirs.map((dir) => {
+      return __dirname + '/Stash/' + dir;
+    });
+
+    dirs = dirs.filter((dir) => {
+      if (/[\S\s]*\/Me$/.test(dir)) {
+        return false;
+      } else {
+        return true;
+      }
+    });
+
+    dirs.push(__dirname + '/Stash/Me/Mine');
+    fs.readdirSync(__dirname + '/Stash/Me/Recommended').forEach(function(path){
+      dirs.push(__dirname + '/Stash/Me/Recommended/' + path)
+    })
+    dirs.push(__dirname + '/Stash/Me/Recommended');
+
+    dirs = dirs.filter((dir) => {
+      if (/\.DS_Store/.test(dir)) {
+        return false;
+      } else {
+        return true;
+      }
+    })
+
+    return dirs;
+  }
+
   render() {
     return (
-      <div className="app-container">
-        <AppPresentation folders={this.props.folders} loadFolder={this.loadFolder.bind(this)} folderPath={this.state.currentFolder}/>
+      <div className="">
+        <AppPresentation folders={this.getFolders()} loadFolder={this.loadFolder.bind(this)} folderPath={this.state.currentFolder}/>
       </div>
     )
   }
 };
 
-var getFolders = function() {
-  var dirs = fs.readdirSync(__dirname + '/Stash');
-  dirs = dirs.map((dir) => {
-    return __dirname + '/Stash/' + dir;
-  });
 
-  dirs = dirs.filter((dir) => {
-    if (/[\S\s]*\/Me$/.test(dir)) {
-      return false;
-    } else {
-      return true;
-    }
-  });
+export default AppContainer;
 
-  dirs.push(__dirname + '/Stash/Me/Mine');
-  fs.readdirSync(__dirname + '/Stash/Me/Recommended').forEach(function(path){
-    dirs.push(__dirname + '/Stash/Me/Recommended/' + path)
-  })
-  dirs.push(__dirname + '/Stash/Me/Recommended');
-
-  dirs = dirs.filter((dir) => {
-    if (/\.DS_Store/.test(dir)) {
-      return false;
-    } else {
-      return true;
-    }
-  })
-
-  return dirs;
-};
-
-render(<AppContainer folders={getFolders()}/>, document.getElementById('app'));
+// render(<AppContainer folders={getFolders()}/>, document.getElementById('app'));
