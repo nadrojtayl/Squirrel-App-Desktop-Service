@@ -59,7 +59,7 @@ exports.getPage = function(page, filePath) {
         return addBase(link)
       });
 
-      filePath += $('title').text().slice(0,20) + '/';
+      filePath += $('title').text() + '/';
 
       Promise.reduce(assetLinksAb, (_, assetLink, index) => {
         var extension = getExtension(assetLink);

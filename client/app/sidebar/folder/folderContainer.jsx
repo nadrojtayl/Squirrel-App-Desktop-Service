@@ -2,7 +2,7 @@ import React from 'react'
 
 const FolderContainer = (props) => {
 
-  const title = props.index === 0 ? 'your saved stash' : 'with love from friends';
+  const title = props.index === 0 ? 'My Stash' : 'From Friends';
 
 	var regex = /[\S\s]*\/([\S\s]*)$/;
 

@@ -143,3 +143,19 @@ img{
 
 .sidebar{
 }
+
+/*======= article card styling ======= */
+
+.articleCard {
+    box-shadow: 10px 10px 5px #e0e0e0;
+    transition: box-shadow 0.7s ease;
+}
+
+.articleCard:hover {
+    box-shadow: 10px 10px 5px #888888; 
+    cursor: pointer;
+}
+
+.articleTitle h3 {
+    font-weight: bold;
+}

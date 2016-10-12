@@ -61,11 +61,13 @@ class FileCardContainer extends React.Component {
     // console.log('dirname', __dirname);
     // console.log(image);
     return (
-      <div className = "articleBox" onClick={() => this.expand.bind(this)(this.props.path)} draggable="true" onDragStart={function(event){drag(event)}}>
-        <img className="articleImage" src={imagePath}/>
-        <div className="articleTitle">
-          <h3> {title}</h3>
+      <div className='articleCard' style={{position: 'relative', display: 'flex', flexDirection: 'row', backgroundPosition: 'center', backgroundSize: 'cover', margin: '8px'}} onClick={() => this.expand.bind(this)(this.props.path)} draggable="true" onDragStart={function(event){drag(event)}}>
+        <div className="articleHeader"></div>
+        <div className='articleTitle' style={{paddingLeft: '10px', position: 'absolute', top: '23%', width: '100%'}}>
+          <h5>{title}</h5>
         </div>
+        <div className='minisquirrel'></div>
+        <div className='articleFooter'></div>
       </div>
     );
   }

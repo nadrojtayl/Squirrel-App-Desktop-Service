@@ -9,7 +9,7 @@ var ArticleLibraryPresentation = ({filePaths}) => {
   });
 
   return (
-    <div className = "z-depth-3 easyui-panel articleContainer" style={{width:'100%',height:'100%',position:'relative', backgroundColor: '#f5f5f5'}}>
+    <div className = "z-depth-3 easyui-panel articleContainer" style={{display: 'flex', 'flex-wrap': 'wrap', width:'100%',height:'100%',position:'relative', backgroundColor: 'white'}}>
       {fileCards}
     </div>
   );
