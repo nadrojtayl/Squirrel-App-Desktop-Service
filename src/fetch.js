@@ -68,12 +68,13 @@ exports.call = () => {
      fs.writeFileSync(__dirname + '/testing.txt','MADE IT IN TESTING');
      var alreadyStored = JSON.parse(fs.readFileSync('currentlysaved.txt'));
       //get the newlinks
+      console.log('linksArray', linksArray);
       linksArray = linksArray.filter(function(linkobj){
       return alreadyStored.indexOf(linkobj[0]) === -1;
       })
 
     if (linksArray.length>0){
-      //console.log('Adding',linksArray);
+      console.log('Adding',linksArray);
       var toSave = alreadyStored.concat(linksArray.map(function(link){return link[0]}));
       console.log('Saving',toSave);
       console.log('Caching',linksArray);
