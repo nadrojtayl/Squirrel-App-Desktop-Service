@@ -15,7 +15,7 @@
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.1",
     "easyui": "^3.6.0",
-    "electron": "^1.4.1",
+    "electron": "^9.1.0",
     "electron-cookies": "^1.1.0",
     "electron-prebuilt": "^1.4.1",
     "express": "^4.14.0",
